@@ -1,4 +1,7 @@
 /* Hero */
+.hero-copy{
+  width:min(1180px, 100%);
+}
 .hero-actions{
   display:flex;
   flex-wrap:wrap;
@@ -17,7 +20,19 @@
   border-radius:999px;
   font-weight:800;
   line-height:1;
-  transition:transform .2s ease,box-shadow .2s ease!important;
+  box-shadow:0 8px 18px rgba(4,24,43,.12);
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease!important;
+}
+.hero-actions .hero-link{
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  backdrop-filter:blur(10px);
+}
+.hero-actions .hero-link:hover,
+.hero-actions .hero-visit:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px rgba(4,24,43,.18)!important;
+  filter:brightness(1.03);
 }
 .hero-actions .hero-visit{
   color:#fff;
@@ -25,9 +40,26 @@
   backdrop-filter:blur(8px);
   box-shadow:0 8px 20px rgba(4,24,43,.22);
 }
-.hero-actions .hero-visit:hover{
-  transform:translateY(-2px);
-  box-shadow:0 12px 24px rgba(4,24,43,.28)!important;
+
+@media (max-width: 899px){
+  .hero-copy{
+    left:6vw!important;
+    right:6vw!important;
+    bottom:6vh!important;
+  }
+  .hero-actions{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .hero-actions .hero-link,
+  .hero-actions .hero-visit{
+    width:auto;
+    min-width:0;
+    max-width:100%;
+    padding:12px 18px!important;
+    font-size:.92rem!important;
+  }
 }
 
 /* Missão editorial */
@@ -59,7 +91,7 @@
   /* Missão */
   .mission-intro{
     min-height:0!important;
-    padding:88px 0 54px!important;
+    padding:88px 0 30px!important;
   }
   .mission-intro .shell{width:min(1680px,94vw)!important}
   .mission-intro h2{
@@ -208,15 +240,16 @@
 
   /* Trajetória */
 .segments{
-  padding-bottom:86px!important;
+  padding-bottom:0!important;
 }
 
 .segment-stage{
-  min-height:0!important;
+  max-height:23vw!important;
 }
 
 .v24 .segment-slide{
-  width:min(1220px,90vw)!important;
+  width:min(1080px,80vw)!important;
+  height:min(900px,33vw)!important;
   margin-inline:auto!important;
 }
 
@@ -232,23 +265,18 @@
 .v24 .segment-photo{
   position:relative;
   width:100%!important;
+  height:70%!important;
   min-width:0!important;
-  min-height:500px;
-
   margin:0!important;
-
   aspect-ratio:auto!important;
-
   overflow:hidden;
 }
 
 .v24 .segment-photo img{
   position:absolute;
   inset:0;
-
   width:100%!important;
   height:100%!important;
-
   object-fit:cover!important;
 }
 
@@ -256,25 +284,19 @@
 /* TEXTO */
 .v24 .segment-slide p{
   width:100%!important;
+  height:70%!important;
   min-width:0!important;
   max-width:none!important;
-  min-height:500px;
-
   margin:0!important;
   padding:34px 38px!important;
-
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
-
   box-sizing:border-box!important;
-
   border:1px solid rgba(7,55,99,.12)!important;
   border-radius:20px!important;
   box-shadow:0 12px 30px rgba(4,24,43,.10)!important;
-
   text-align:center!important;
-
   font-size:clamp(1.05rem,1.18vw,1.22rem)!important;
   line-height:1.58!important;
 }
@@ -297,7 +319,7 @@
     margin-inline:auto!important;
     white-space:nowrap!important;
     text-align:center!important;
-    font-size:clamp(1rem,1.22vw,1.35rem)!important;
+    font-size:clamp(1rem,1.5vw,1.35rem)!important;
     line-height:1.5!important;
   }
   .project-track{
@@ -316,6 +338,8 @@
     min-height:100svh!important;
     padding-top:56px!important;
     padding-bottom:0!important;
+    display:flex!important;
+    flex-direction:column!important;
   }
   .v25 .v14-structure .structure-head{
     width:min(1200px,92vw)!important;
@@ -333,7 +357,7 @@
   .v25 .v14-structure .structure-sub{
     max-width:1100px!important;
     margin:0 auto!important;
-    padding:0 24px;
+    padding:24px 24px;
     white-space:normal!important;
     text-align:center!important;
     line-height:1.48!important;
@@ -342,14 +366,14 @@
     height:clamp(480px,calc(100svh - 245px),650px)!important;
     min-height:480px!important;
     max-height:650px!important;
-    margin-top:0!important;
+    margin-top:auto!important;
     overflow:hidden!important;
   }
   .v25 .v14-mandala-rotor{
-    width:min(1400px,82vw)!important;
+    width:min(1700px,86vw)!important;
     left:50%!important;
     right:auto!important;
-    top:8px!important;
+    top:50px!important;
     translate:-50% 0;
   }
 
@@ -365,99 +389,226 @@
   .v23 .results-head .results-line{display:inline!important}
   .results-track{
     gap:24px!important;
+    max-height: 35vw;
   }
   .result-card{
     flex-basis:clamp(320px,26vw,460px)!important;
   }
 
   /* Depoimentos */
-  .v15 .testimonials-inner{width:min(1500px,94vw)!important}
-  .v15 .testimonials-head h2{
-    max-width:none!important;
-    white-space:nowrap!important;
-    font-size:clamp(1.95rem,4.5vw,4.5rem)!important;
-    line-height:.96!important;
+  .v15 .testimonials-inner{
+    width:min(1500px,92vw)!important;
+    margin:0 auto!important;
+
+    display:grid!important;
+    grid-template-columns:minmax(0,620px) minmax(420px,520px)!important;
+    grid-template-areas:
+      "titulo cards"
+      "titulo dica";
+
+    column-gap:clamp(60px,7vw,130px);
+    align-items:center!important;
+
+    text-align:center!important;
   }
+
+
+  /* TÍTULO À ESQUERDA, MAS CENTRALIZADO NA COLUNA */
+  .v15 .testimonials-head{
+    grid-area:titulo;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:0;
+    height:100%;
+  }
+
+
+  .v15 .testimonials-head h2{
+    width:max-content;
+    max-width:100%!important;
+
+    margin:0 auto!important;
+
+    text-align:center!important;
+    white-space:nowrap!important;
+
+    font-size:clamp(3rem,3.6vw,4.7rem)!important;
+    line-height:.92!important;
+    letter-spacing:-.055em!important;
+  }
+
+
+  /* Palavras vermelhas */
   .testimonial-accent{
     color:var(--red);
     font-weight:900;
   }
+
+
+  /* "Conta" fica sozinho na segunda linha */
+  .v15 .testimonial-count-line{
+    display:block;
+
+    width:100%;
+    margin-top:.10em;
+
+    text-align:center!important;
+
+    font-size:1.45em;
+    line-height:.82;
+  }
+
+
+  /* CARDS À DIREITA */
   .v15 .testimonial-stack-wrap{
-    width:min(520px,38vw)!important;
+    grid-area:cards;
+    width:min(450px,30vw)!important;
+    margin:0!important;
+    justify-self:center;
+  }
+
+
+  /* "Arraste ou toque..." fica embaixo dos cards */
+  .v15 .testimonial-hint{
+    grid-area:dica;
+    width:min(520px,34vw);
+    margin:36px 0 0!important;
+    justify-self:center;
+    text-align:center!important;
   }
 
   /* Direção */
-  .direction{padding:84px 0 92px!important}
-  .direction-inner{
-    width:min(1580px,92vw)!important;
-    display:grid!important;
-    grid-template-columns:minmax(0,1.25fr) minmax(520px,.75fr)!important;
-    gap:68px!important;
-    align-items:center!important;
+  .direction{
+    padding:72px 0 82px!important;
   }
-  .direction-copy{min-width:0}
+
+.direction-inner{
+  width:max-content!important;
+  max-width:94vw!important;
+  margin:0 auto!important;
+  padding-inline:clamp(28px,2.4vw,40px)!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:minmax(520px,780px) 220px 220px!important;
+  column-gap:clamp(28px,2.4vw,40px)!important;
+  align-items:center!important;
+}
+
+
+  /* FRASE */
+  .direction-copy{
+    grid-column:1;
+    min-width:0;
+
+    display:flex;
+    justify-content:flex-start;
+  }
+
   .direction-copy blockquote{
-    position:relative;
-    max-width:none!important;
+    width:100%!important;
+    max-width:780px!important;
+
     margin:0!important;
-    padding:0 34px!important;
-    font-size:clamp(2.55rem,3.15vw,3.9rem)!important;
-    line-height:1.02!important;
+    padding:0!important;
+
+    font-size:clamp(2.25rem,3vw,3rem)!important;
+    line-height:1.05!important;
+    letter-spacing:-.055em!important;
+
+    color:var(--blue)!important;
     text-align:left!important;
   }
-  .direction .quote-text{display:block!important}
-  .direction .quote-line{
-    display:block;
-    white-space:nowrap;
+
+
+  /* Cada span do HTML já determina uma linha */
+  .direction .quote-text{
+    display:block!important;
   }
+
+  .direction .quote-line{
+    display:block!important;
+    white-space:normal;
+  }
+
+
+  /* ASPAS DENTRO DA FRASE */
   .direction .quote-open,
   .direction .quote-close{
-    position:absolute!important;
+    position:static!important;
+    display:inline!important;
+
     color:var(--yellow)!important;
+    font-size:1.2em!important;
+    font-weight:900!important;
     line-height:1!important;
+
+    vertical-align:.02em!important;
   }
+
   .direction .quote-open{
-    left:0;
-    top:-.2em;
+    margin-right:.10em!important;
   }
+
   .direction .quote-close{
-    right:0;
-    bottom:-.18em;
+    margin-left:.10em!important;
   }
+
   .director-portraits{
-    display:grid!important;
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:34px!important;
-    align-items:start!important;
+    display:contents!important;
   }
+
+  .director-portraits .director-person:nth-child(1){
+    grid-column:2;
+  }
+
+  .director-portraits .director-person:nth-child(2){
+    grid-column:3;
+  }
+
   .director-person{
     position:relative;
     max-width:none!important;
     width:100%!important;
+    text-align:center;
   }
+
   .director-person::before{
     content:"";
     position:absolute;
     z-index:0;
-    width:min(18vw,280px);
-    height:min(18vw,280px);
+    width:220px;
+    height:220px;
     left:50%;
     top:14px;
     border-radius:50%;
-    background:var(--blue);
-    transform:translateX(-45%);
-    opacity:.12;
+    background:rgba(235,191,51,.22);
+    transform:translateX(-42%);
   }
+
   .director-person .portrait{
     position:relative;
     z-index:1;
-    width:min(18vw,280px)!important;
-    height:min(18vw,280px)!important;
-    margin:0 auto!important;
-    border:5px solid var(--blue)!important;
+    width:220px!important;
+    height:220px!important;
+    aspect-ratio:1 / 1!important;
+    overflow:hidden!important;
+    margin:0 auto 18px!important;
     border-radius:50%!important;
-    box-shadow:0 0 0 10px rgba(7,55,99,.07),0 20px 46px rgba(7,55,99,.16)!important;
+    box-shadow:
+      0 0 0 10px rgba(255, 196, 3, 0.14),
+      0 18px 38px  #ffc40098!important;
   }
+
+  .director-person .portrait img{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+    border-radius:50%!important;
+  }
+
   .director-person figcaption{
     position:relative;
     z-index:1;

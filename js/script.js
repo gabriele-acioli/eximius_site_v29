@@ -120,7 +120,7 @@ function setupResults(){
     resultsReady=true;
   });
 }
-function pauseResults(ms=1800){resultPauseUntil=performance.now()+ms}
+function pauseResults(ms=900){resultPauseUntil=performance.now()+ms}
 ['pointerdown','touchstart','wheel'].forEach(ev=>rt.addEventListener(ev,()=>pauseResults(),{passive:true}));
 rt.addEventListener('scroll',()=>{
   if(!resultsReady)return;
@@ -136,7 +136,7 @@ function animateResults(t){
   if(resultsReady){
     if(!lastResultTime)lastResultTime=t;
     const dt=Math.min(40,t-lastResultTime);lastResultTime=t;
-    if(t>resultPauseUntil)rt.scrollLeft+=dt*0.018;
+    if(t>resultPauseUntil)rt.scrollLeft+=dt*0.12;
   }
   requestAnimationFrame(animateResults);
 }
