@@ -107,46 +107,122 @@ document.querySelectorAll('.lab-node').forEach(b=>b.onclick=()=>{
   center.style.background=b.dataset.color||'#073763';
 });
 
-/* RESULTADOS — carrossel automático */
+/* RESULTADOS — pré-carregamento antes da seção entrar na tela */
+(() => {
+  const estrutura = document.getElementById('estrutura');
+  const resultados = document.getElementById('resultsTrack');
+
+  if(!estrutura || !resultados) return;
+
+  const preloadObserver = new IntersectionObserver(entries => {
+    if(!entries[0].isIntersecting) return;
+
+    const carregadas = new Set();
+
+    resultados.querySelectorAll('img').forEach(img => {
+      const src = img.currentSrc || img.src;
+
+      if(!src || carregadas.has(src)) return;
+
+      carregadas.add(src);
+
+      const preload = new Image();
+      preload.decoding = 'async';
+      preload.src = src;
+    });
+
+    preloadObserver.disconnect();
+  }, {
+    rootMargin:'300px 0px'
+  });
+
+  preloadObserver.observe(estrutura);
+})();
+
+/* RESULTADOS — carrossel infinito sem cópias */
 const rt=document.getElementById('resultsTrack');
-let resultsReady=false, resultSeqWidth=0, resultPauseUntil=0, lastResultTime=0;
-function setupResults(){
-  const originals=[...rt.children];
-  if(!originals.length||resultsReady)return;
-  originals.forEach(c=>c.dataset.original='1');
-  const before=originals.map(c=>{const n=c.cloneNode(true);n.removeAttribute('data-original');return n}), after=originals.map(c=>{const n=c.cloneNode(true);n.removeAttribute('data-original');return n});
-  before.reverse().forEach(c=>rt.insertBefore(c,rt.firstChild));
-  after.forEach(c=>rt.appendChild(c));
-  requestAnimationFrame(()=>{
-    const firstOriginal=rt.querySelector('[data-original="1"]');
-    const originalsNow=[...rt.querySelectorAll('[data-original="1"]')];
-    const first=originalsNow[0], last=originalsNow[originalsNow.length-1];
-    resultSeqWidth=(last.offsetLeft+last.offsetWidth)-first.offsetLeft+26;
-    rt.scrollLeft=first.offsetLeft-(rt.clientWidth-first.offsetWidth)/2;
-    resultsReady=true;
+
+if(rt){
+  let resultPauseUntil=0;
+  let lastResultTime=0;
+  let resultsReady=false;
+  let ajustandoLoop=false;
+
+  function resultGap(){
+    const style=getComputedStyle(rt);
+    return parseFloat(style.columnGap||style.gap)||16;
+  }
+
+  function cardStep(card){
+    return card.getBoundingClientRect().width+resultGap();
+  }
+
+  function setupResults(){
+    const primeiro=rt.firstElementChild;
+
+    if(!primeiro)return;
+
+    requestAnimationFrame(()=>{
+      rt.scrollLeft=primeiro.offsetLeft-(rt.clientWidth-primeiro.offsetWidth)/2;
+      resultsReady=true;
+    });
+  }
+
+  function reciclarResultados(){
+    if(!resultsReady||ajustandoLoop)return;
+
+    const primeiro=rt.firstElementChild;
+
+    if(!primeiro)return;
+
+    const trackRect=rt.getBoundingClientRect();
+    const cardRect=primeiro.getBoundingClientRect();
+
+    if(cardRect.right<trackRect.left){
+      ajustandoLoop=true;
+
+      const deslocamento=cardStep(primeiro);
+
+      rt.appendChild(primeiro);
+      rt.scrollLeft-=deslocamento;
+
+      requestAnimationFrame(()=>{
+        ajustandoLoop=false;
+      });
+    }
+  }
+
+  function pauseResults(ms=1800){
+    resultPauseUntil=performance.now()+ms;
+  }
+
+  ['pointerdown','touchstart','wheel'].forEach(ev=>{
+    rt.addEventListener(ev,()=>pauseResults(),{passive:true});
+  });
+
+  rt.addEventListener('scroll',reciclarResultados,{passive:true});
+
+  function animateResults(t){
+    if(resultsReady){
+      if(!lastResultTime)lastResultTime=t;
+
+      const dt=Math.min(40,t-lastResultTime);
+      lastResultTime=t;
+
+      if(t>resultPauseUntil){
+        rt.scrollLeft+=dt*.12
+        reciclarResultados();
+      }
+    }
+
+    requestAnimationFrame(animateResults);
+  }
+
+  addEventListener('load',()=>{
+    setupResults();
+    requestAnimationFrame(animateResults);
   });
 }
-function pauseResults(ms=900){resultPauseUntil=performance.now()+ms}
-['pointerdown','touchstart','wheel'].forEach(ev=>rt.addEventListener(ev,()=>pauseResults(),{passive:true}));
-rt.addEventListener('scroll',()=>{
-  if(!resultsReady)return;
-  const originals=[...rt.querySelectorAll('[data-original="1"]')];
-  const first=originals[0], last=originals[originals.length-1];
-  const firstCenter=first.offsetLeft+first.offsetWidth/2;
-  const lastCenter=last.offsetLeft+last.offsetWidth/2;
-  const centerPos=rt.scrollLeft+rt.clientWidth/2;
-  if(centerPos < firstCenter-resultSeqWidth*.65)rt.scrollLeft+=resultSeqWidth;
-  else if(centerPos > lastCenter+resultSeqWidth*.65)rt.scrollLeft-=resultSeqWidth;
-},{passive:true});
-function animateResults(t){
-  if(resultsReady){
-    if(!lastResultTime)lastResultTime=t;
-    const dt=Math.min(40,t-lastResultTime);lastResultTime=t;
-    if(t>resultPauseUntil)rt.scrollLeft+=dt*0.12;
-  }
-  requestAnimationFrame(animateResults);
-}
-addEventListener('load',()=>{setupResults();requestAnimationFrame(animateResults)});
 
 /* PROPOSTA PEDAGÓGICA — abertura dos tópicos */
 document.querySelectorAll('.mission-topic-head').forEach(head=>{
@@ -556,3 +632,53 @@ document.querySelectorAll('.reveal').forEach(el=>{
   addEventListener('load',requestUpdate,{once:true});
   requestUpdate();
 })();
+
+/* EDIÇÃO DO VÍDEO */
+/* HERO — trecho e looping suave do vídeo */
+const heroVideo = document.querySelector('.hero video');
+
+if(heroVideo){
+  const inicio = 3;
+  const fim = 12;
+  const duracaoTransicao = 450;
+
+  let trocando = false;
+
+  heroVideo.addEventListener('loadedmetadata',()=>{
+    heroVideo.currentTime = inicio;
+    heroVideo.play().catch(()=>{});
+  });
+
+  function controlarLoop(){
+    if(!trocando && heroVideo.currentTime >= fim - .45){
+      trocando = true;
+
+      heroVideo.classList.add('loop-transition');
+
+      setTimeout(()=>{
+        const aoTrocar = ()=>{
+          heroVideo.removeEventListener('seeked',aoTrocar);
+
+          requestAnimationFrame(()=>{
+            requestAnimationFrame(()=>{
+              heroVideo.classList.remove('loop-transition');
+              heroVideo.play().catch(()=>{});
+
+              setTimeout(()=>{
+                trocando = false;
+              },duracaoTransicao);
+            });
+          });
+        };
+
+        heroVideo.addEventListener('seeked',aoTrocar);
+        heroVideo.currentTime = inicio;
+
+      },duracaoTransicao);
+    }
+
+    requestAnimationFrame(controlarLoop);
+  }
+
+  controlarLoop();
+}
