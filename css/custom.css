@@ -239,6 +239,78 @@
   }
   .desktop-break{display:block}
 
+  /* PADRÃO DE TÍTULOS — DESKTOP */
+  .v23 .segments-head .eyebrow,
+  .v23 .projects-head h2,
+  .v25 .v14-structure .structure-head h2,
+  .v23 .results-head h2,
+  .partners-title h2,
+  .campaign-slogan{
+    font-family:"Manrope",Arial,sans-serif!important;
+    font-size:clamp(1.95rem,4.5vw,4.5rem)!important;
+    font-weight:800!important;
+    line-height:.96!important;
+    letter-spacing:-.055em!important;
+    text-align:center!important;
+  }
+
+  /* Mantém o itálico do slogan, mas com a mesma espessura */
+  .campaign-slogan em,
+  .campaign-slogan strong{
+    font-weight:800!important;
+  }
+
+  /* MESMO RESPIRO ABAIXO DOS TÍTULOS */
+  .v23 .segments-head .eyebrow,
+  .v23 .projects-head h2,
+  .v25 .v14-structure .structure-head h2{
+    margin-bottom:36px!important;
+  }
+
+  /* RESULTADOS — evita somar duas margens */
+  .v23 .results-head h2{
+    margin-bottom:36px!important;
+  }
+
+  .v23 .results-sub{
+    margin-top:0!important;
+  }
+
+  /* PARCERIAS */
+  .partners-title{
+    margin-bottom:36px!important;
+  }
+
+  .partners-title h2{
+    font-family:"Manrope",Arial,sans-serif!important;
+    font-size:clamp(1.95rem,4.5vw,4.5rem)!important;
+    font-weight:800!important;
+    line-height:.96!important;
+    letter-spacing:-.055em!important;
+  }
+
+  /* CTA FINAL */
+  .campaign-slogan{
+    margin:0!important;
+  }
+
+  .final-actions{
+    margin-top:36px!important;
+  }
+
+  /* PADRÃO DE SUBTÍTULOS — DESKTOP */
+  .projects-head p,
+  .v25 .v14-structure .structure-sub,
+  .v23 .results-sub{
+    font-size:clamp(1rem,1.5vw,1.35rem)!important;
+    line-height:1.5!important;
+  }
+
+  /* O destaque dos 6.400 m² não muda de tamanho */
+  .v25 .v14-structure .structure-sub strong{
+    font-size:inherit!important;
+  }
+
   /* Trajetória */
 .segments{
   padding-bottom:0!important;
@@ -349,11 +421,7 @@
   .v25 .v14-structure .structure-head h2{
     display:block!important;
     width:100%!important;
-    margin:0 auto 16px!important;
     white-space:nowrap!important;
-    text-align:center!important;
-    font-size:clamp(1.95rem,4.5vw,4.5rem)!important;
-    line-height:.96!important;
   }
   .v25 .v14-structure .structure-sub{
     max-width:1100px!important;
@@ -384,8 +452,6 @@
     justify-content:center!important;
     gap:.2em!important;
     white-space:nowrap!important;
-    font-size:clamp(1.95rem,4.5vw,4.5rem)!important;
-    line-height:.94!important;
   }
   .v23 .results-head .results-line{display:inline!important}
   .results-track{
@@ -510,9 +576,16 @@
   }
 
   /* CARDS À DIREITA */
+  .v15 .testimonials{
+    min-height:100svh!important;
+    display:flex!important;
+    align-items:center!important;
+  }
   .v15 .testimonial-stack-wrap{
     grid-area:cards;
-    width:min(600px,35vw)!important;
+    height:clamp(540px,72svh,690px)!important;
+    width:auto!important;
+    aspect-ratio:1229/1536;
     margin:0!important;
     justify-self:center;
   }
@@ -532,32 +605,36 @@
   }
 
   .direction-inner{
-    width:max-content!important;
-    max-width:94vw!important;
-    margin:0 auto!important;
-    padding-inline:clamp(28px,2.4vw,40px)!important;
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
     box-sizing:border-box!important;
     display:grid!important;
-    grid-template-columns:minmax(0,720px) minmax(420px,520px)!important;
-    column-gap:clamp(28px,2.4vw,40px)!important;
-    justify-content:center!important;
+    grid-template-columns:
+      minmax(28px,1fr)
+      max-content
+      minmax(28px,1fr)
+      auto
+      minmax(28px,1fr)
+      auto
+      minmax(28px,1fr)!important;
     align-items:center!important;
   }
 
   /* FRASE */
   .direction-copy{
-    grid-column:1;
+    grid-column:2;
     min-width:0;
     display:flex;
-    justify-content:flex-start;
+    justify-content:center;
   }
-
   .direction-copy blockquote{
-    width:100%!important;
-    max-width:780px!important;
+    width:max-content!important;
+    max-width:none!important;
     margin:0!important;
     padding:0!important;
-    font-size:clamp(2.25rem,3vw,3rem)!important;
+    font-size:clamp(1.75rem,2.55vw,3rem)!important;
     line-height:1.05!important;
     letter-spacing:-.055em!important;
     color:var(--blue)!important;
@@ -571,7 +648,7 @@
 
   .direction .quote-line{
     display:block!important;
-    white-space:normal;
+    white-space:nowrap!important;
   }
 
   /* ASPAS DENTRO DA FRASE */
@@ -599,11 +676,11 @@
   }
 
   .director-portraits .director-person:nth-child(1){
-    grid-column:2;
+    grid-column:4;
   }
 
   .director-portraits .director-person:nth-child(2){
-    grid-column:3;
+    grid-column:6;
   }
 
   .director-person{
@@ -617,8 +694,8 @@
     content:"";
     position:absolute;
     z-index:0;
-    width:220px;
-    height:220px;
+    width:clamp(170px,12vw,220px)!important;
+    height:clamp(170px,12vw,220px)!important;
     left:50%;
     top:14px;
     border-radius:50%;
@@ -653,6 +730,9 @@
   }
 
   /* Parceiros */
+  .partners-title{
+    margin-bottom:clamp(64px,5vw,92px)!important;
+  }
   .partner-track{
     display:flex!important;
     width:max-content!important;
@@ -671,12 +751,9 @@
   }
 
   /* CTA final */
-  .campaign-slogan{
-    display:block!important;
-    text-align:center!important;
-    font-size:clamp(2.9rem,5.15vw,5.6rem)!important;
-    line-height:.98!important;
-  }
+.campaign-slogan{
+  display:block!important;
+}
   .campaign-slogan .campaign-line{
     display:block!important;
     white-space:nowrap!important;
