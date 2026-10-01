@@ -138,10 +138,11 @@
   .mission-editorial-media{
     aspect-ratio:16/9;
     overflow:hidden;
-    border:1px solid rgba(7,55,99,.12);
     border-radius:28px;
     background:#dce8f1;
-    box-shadow:0 18px 38px rgba(7,55,99,.16);
+    box-shadow:
+      14px 14px 0 var(--yellow),
+      0 18px 38px rgba(7,55,99,.16);
   }
   .mission-editorial-media img{
     width:100%;
@@ -397,79 +398,124 @@
 
   /* Depoimentos */
   .v15 .testimonials-inner{
-    width:min(1500px,92vw)!important;
-    margin:0 auto!important;
-
+    width:100%!important;
+    margin:0!important;
     display:grid!important;
-    grid-template-columns:minmax(0,620px) minmax(420px,520px)!important;
+    grid-template-columns:
+      minmax(0,1fr)
+      auto
+      minmax(0,1fr)
+      auto
+      minmax(0,1fr)!important;
     grid-template-areas:
-      "titulo cards"
-      "titulo dica";
-
-    column-gap:clamp(60px,7vw,130px);
+      ". titulo . cards ."
+      ". titulo . dica .";
+    column-gap:0!important;
     align-items:center!important;
-
     text-align:center!important;
   }
 
 
-  /* TÍTULO À ESQUERDA, MAS CENTRALIZADO NA COLUNA */
+  /* SELO */
   .v15 .testimonials-head{
     grid-area:titulo;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     min-width:0;
     height:100%;
   }
 
-
   .v15 .testimonials-head h2{
-    width:max-content;
-    max-width:100%!important;
+    display:none!important;
+  }
 
-    margin:0 auto!important;
-
-    text-align:center!important;
-    white-space:nowrap!important;
-
-    font-size:clamp(3rem,3.6vw,4.7rem)!important;
-    line-height:.92!important;
-    letter-spacing:-.055em!important;
+  /* Caixa que representa APENAS o círculo visível */
+  .v15 .testimonials-seal-wrap{
+    width:min(640px,34vw);
+    aspect-ratio:1 / 1;
+    position:relative;
+    overflow:hidden;
+    flex:none;
   }
 
 
-  /* Palavras vermelhas */
-  .testimonial-accent{
-    color:var(--red);
-    font-weight:900;
+  /* Recorta o espaço branco existente no PNG */
+  .v15 .testimonials-seal{
+    display:block!important;
+    width:124.3%!important;
+    max-width:none!important;
+    height:auto!important;
+    margin:0!important;
+    object-fit:contain!important;
+    transform:translate(-9.63%,-0.72%);
   }
 
-
-  /* "Conta" fica sozinho na segunda linha */
-  .v15 .testimonial-count-line{
-    display:block;
-
-    width:100%;
-    margin-top:.10em;
-
-    text-align:center!important;
-
-    font-size:1.45em;
-    line-height:.82;
+  /* SELO — gira do verso para a frente */
+  .v15 .testimonials-head{
+    perspective:1400px;
   }
 
+  .v15 .testimonials-seal-wrap.reveal{
+    opacity:0;
+
+    transform:
+      perspective(1400px)
+      rotateY(180deg)
+      scale(.94);
+
+    transform-origin:center;
+    transition:none!important;
+  }
+
+  .v15 .testimonials-seal-wrap.reveal.in{
+    animation:virarSelo 1.80s cubic-bezier(.22,.72,.22,1) both;
+  }
+
+  @keyframes virarSelo{
+
+    0%{
+      opacity:0;
+      transform:
+        perspective(1400px)
+        rotateY(180deg)
+        scale(.94);
+    }
+
+    20%{
+      opacity:1;
+    }
+
+    65%{
+      transform:
+        perspective(1400px)
+        rotateY(18deg)
+        scale(1.015);
+    }
+
+    82%{
+      transform:
+        perspective(1400px)
+        rotateY(-5deg)
+        scale(.997);
+    }
+
+    100%{
+      opacity:1;
+      transform:
+        perspective(1400px)
+        rotateY(0deg)
+        scale(1);
+    }
+  }
 
   /* CARDS À DIREITA */
   .v15 .testimonial-stack-wrap{
     grid-area:cards;
-    width:min(450px,30vw)!important;
+    width:min(600px,35vw)!important;
     margin:0!important;
     justify-self:center;
   }
-
 
   /* "Arraste ou toque..." fica embaixo dos cards */
   .v15 .testimonial-hint{
@@ -485,24 +531,23 @@
     padding:72px 0 82px!important;
   }
 
-.direction-inner{
-  width:max-content!important;
-  max-width:94vw!important;
-  margin:0 auto!important;
-  padding-inline:clamp(28px,2.4vw,40px)!important;
-  box-sizing:border-box!important;
-  display:grid!important;
-  grid-template-columns:minmax(520px,780px) 220px 220px!important;
-  column-gap:clamp(28px,2.4vw,40px)!important;
-  align-items:center!important;
-}
-
+  .direction-inner{
+    width:max-content!important;
+    max-width:94vw!important;
+    margin:0 auto!important;
+    padding-inline:clamp(28px,2.4vw,40px)!important;
+    box-sizing:border-box!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,720px) minmax(420px,520px)!important;
+    column-gap:clamp(28px,2.4vw,40px)!important;
+    justify-content:center!important;
+    align-items:center!important;
+  }
 
   /* FRASE */
   .direction-copy{
     grid-column:1;
     min-width:0;
-
     display:flex;
     justify-content:flex-start;
   }
@@ -510,18 +555,14 @@
   .direction-copy blockquote{
     width:100%!important;
     max-width:780px!important;
-
     margin:0!important;
     padding:0!important;
-
     font-size:clamp(2.25rem,3vw,3rem)!important;
     line-height:1.05!important;
     letter-spacing:-.055em!important;
-
     color:var(--blue)!important;
     text-align:left!important;
   }
-
 
   /* Cada span do HTML já determina uma linha */
   .direction .quote-text{
@@ -533,18 +574,15 @@
     white-space:normal;
   }
 
-
   /* ASPAS DENTRO DA FRASE */
   .direction .quote-open,
   .direction .quote-close{
     position:static!important;
     display:inline!important;
-
     color:var(--yellow)!important;
     font-size:1.2em!important;
     font-weight:900!important;
     line-height:1!important;
-
     vertical-align:.02em!important;
   }
 

@@ -7,7 +7,7 @@
   if (!topics.length) return;
 
   const editorial = document.createElement('div');
-  editorial.className = 'mission-editorial';
+  editorial.className = 'mission-editorial reveal';
   editorial.setAttribute('aria-label', 'Diferenciais do Colégio EXIMIUS');
 
   const media = document.createElement('figure');
@@ -76,4 +76,56 @@
   section.appendChild(editorial);
   document.body.classList.add('mission-editorial-ready');
   select(0);
+
+
+  /* Entrada do bloco azul ao chegar na tela */
+  const reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
+
+  if(reducedMotion){
+
+    editorial.classList.add('in');
+
+  }else{
+
+    const editorialObserver = new IntersectionObserver(entries => {
+
+      entries.forEach(entry => {
+        entry.target.classList.toggle('in', entry.isIntersecting);
+      });
+
+    },{
+      threshold:.08,
+      rootMargin:'0px 0px -5% 0px'
+    });
+
+    editorialObserver.observe(editorial);
+
+  }
+
+  })();
+
+/* Parceiros — duplica automaticamente a sequência para o loop infinito */
+(function setupPartnersLoop(){
+
+  const track = document.querySelector('.partner-track');
+  if(!track) return;
+
+  const original = track.querySelector('.partner-sequence');
+  if(!original) return;
+
+  if(track.querySelector('.partner-sequence[data-clone="true"]')) return;
+
+  const clone = original.cloneNode(true);
+
+  clone.setAttribute('aria-hidden', 'true');
+  clone.setAttribute('data-clone', 'true');
+
+  clone.querySelectorAll('img').forEach(function(img){
+    img.alt = '';
+  });
+
+  track.appendChild(clone);
+
 })();

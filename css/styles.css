@@ -379,7 +379,7 @@ button        { font: inherit }
 /* ── 11. Partners ────────────────────────────────────────────── */
 .partners { background: #fff !important; padding: 72px 0 78px; overflow: hidden; border-top: 1px solid #d8d2c4; border-bottom: 1px solid #d8d2c4 }
 .partners-title { text-align: center; width: min(1000px,90vw); margin: 0 auto 48px }
-.partners-title h2 { margin: 0; color: var(--red); font: 800 clamp(1.5rem,3.4vw,2.6rem)/1 "Manrope",sans-serif; letter-spacing: .04em; text-transform: uppercase }
+.partners-title h2 { margin: 0; color: var(--red); font: 800 clamp(1.5rem,3.4vw,2.6rem)/1 "Manrope",sans-serif; letter-spacing: .04em; }
 .partner-track {
   display: flex !important; align-items: center; gap: 64px; width: max-content !important;
   padding-left: 0 !important; flex: none;
@@ -388,9 +388,8 @@ button        { font: inherit }
 .partner-track:hover { animation-play-state: paused }
 @keyframes partnerMoveCustom { to { transform: translateX(calc(-50% - 32px)) } }
 .partner-sequence { display: flex; align-items: center; gap: 64px; flex: none }
-.partner-logo { width: 220px; height: 92px; padding: 10px 18px; display: flex; align-items: center; justify-content: center; overflow: visible; flex: none }
-.partner-logo img { display: block; max-width: 100% !important; max-height: 100% !important; width: auto !important; height: auto !important; object-fit: contain !important; object-position: center }
-.google-education img { max-width: 100% !important; max-height: 100% !important }
+.partner-logo {width: auto; height: 92px; padding: 10px 18px; display: flex; align-items: center; justify-content: center; overflow: visible; flex: none;}
+.partner-logo img { display: block; height: 72px !important; width: auto !important; max-height: none !important; max-width: none !important; object-fit: contain !important; object-position: center;}
 
 /* ── 12. Final / CTA ─────────────────────────────────────────── */
 .final { background: var(--ice); padding: 96px 0 0; color: var(--blue) }
@@ -445,13 +444,17 @@ button        { font: inherit }
 .map-frame { border: 0 !important; border-radius: 21px !important; box-shadow: none !important; margin: 0 !important; overflow: hidden; height: min(46vw,430px); min-height: 300px }
 .map-frame iframe { border: 0; width: 100%; height: 100%; display: block; position: relative !important; z-index: 2 !important; pointer-events: auto !important; background: #fff !important }
 
-.footer { background: var(--navy); color: #fff; padding: 64px 5vw 38px }
-.footer-inner { width: min(1180px,100%); margin: auto }
-.footer-logo { width: min(260px,60vw); height: auto; margin-bottom: 38px }
-.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border-top: 1px solid rgba(255,255,255,.2); padding-top: 34px }
-.footer-grid p { margin: 0 0 10px; color: rgba(255,255,255,.78); line-height: 1.55 }
-.footer-grid a { display: block; margin: 8px 0; font-weight: 700 }
-.copyright { margin-top: 38px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.12); font-size: .78rem; color: rgba(255,255,255,.48) }
+/* FOOTER */
+.footer { background: var(--navy); color: #fff; padding: 72px 5vw 34px }
+.footer-inner { width: min(1240px,100%); margin: 0 auto }
+.footer-brand { display: block; width: max-content }
+.footer-logo { width: min(260px,60vw); height: auto; margin: 0 0 38px }
+.footer-grid { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(190px,.72fr) minmax(190px,.72fr); gap: clamp(55px,7vw,120px); padding: 40px 0 44px; border-top: 1px solid rgba(255,255,255,.20) }
+.footer-about p { max-width: 500px; margin: 0; color: rgba(255,255,255,.76); font-size: 1rem; line-height: 1.7 }
+.footer-column h3 { margin: 0 0 20px; color: #fff; font-family: "Manrope",Arial,sans-serif; font-size: 1.05rem; font-weight: 800 }
+.footer-column a { display: block; width: max-content; max-width: 100%; margin: 0 0 11px; color: rgba(255,255,255,.76); font-size: .96rem; font-weight: 500; line-height: 1.5; transition: color .2s ease, transform .2s ease }
+.footer-column a:hover { color: var(--yellow); transform: translateX(4px) }
+.copyright { margin: 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.46); font-size: .78rem }
 
 /* Visit modal */
 .visit-modal { position: fixed; inset: 0; z-index: 500; display: grid; place-items: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity .25s ease }
@@ -459,7 +462,6 @@ button        { font: inherit }
 .visit-modal-backdrop { position: absolute; inset: 0; background: rgba(4,24,43,.72); backdrop-filter: blur(7px) }
 .visit-modal-dialog { position: relative; z-index: 2; width: min(560px,94vw); max-height: min(760px,92svh); overflow: auto; background: #fff; border-radius: 28px; padding: 30px; box-shadow: 0 30px 80px rgba(4,24,43,.36) }
 .visit-modal-close { position: absolute; right: 18px; top: 18px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--blue); color: #fff; font-size: 1.6rem; cursor: pointer }
-.visit-modal-kicker { display: block; color: var(--red); font-size: .74rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 8px }
 .visit-modal-head h3 { margin: 0 48px 8px 0; color: var(--blue); font: 800 clamp(2.2rem,7vw,3.6rem)/.95 "Manrope",Arial,sans-serif; letter-spacing: -.055em }
 .visit-modal-head p { margin: 0 0 22px; color: var(--muted); line-height: 1.5 }
 #visitForm { display: grid; gap: 14px }
@@ -840,6 +842,8 @@ body.visit-modal-open { overflow: hidden }
 .v15 .testimonials { background: #fff; color: var(--blue); padding: 82px 0 92px; overflow: hidden }
 .v15 .testimonials-inner { width: min(980px,92vw); margin: auto; text-align: center }
 .v15 .testimonials-head h2 { margin: 0 auto 36px; max-width: 780px; font: 800 clamp(2.8rem,6.6vw,6rem)/.92 "Manrope",Arial,sans-serif; letter-spacing: -.06em; color: var(--blue); text-wrap: balance }
+.testimonial-accent{ color:var(--red)!important; font-weight:900;}
+.testimonials-seal{ display:none; width:auto; height:auto; max-width:100%;}
 .v15 .testimonial-stack-wrap { position: relative; width: min(430px,78vw); aspect-ratio: 1229/1536; margin: 0 auto }
 .v15 .testimonial-stack { position: absolute; inset: 0; perspective: 1200px; touch-action: pan-y }
 .v15 .testimonial-card { position: absolute; inset: 0; margin: 0; border-radius: 24px; overflow: hidden; background: #fff; box-shadow: 0 24px 55px rgba(7,55,99,.18); transform-origin: 50% 92%; transition: transform .42s cubic-bezier(.18,.72,.22,1), opacity .32s ease, filter .32s ease; will-change: transform,opacity; user-select: none }
@@ -856,8 +860,6 @@ body.visit-modal-open { overflow: hidden }
 .v15 .testimonial-hint:after { content: "  →"; color: var(--red); font-weight: 900 }
 .v15 .director-person:nth-child(2) .portrait img { object-position: 50% 32% !important; transform: scale(1.13) !important; transform-origin: 50% 34% !important }
 .v15 .final h2 > span { animation: none !important; transform: none !important }
-.v15 .footer-grid { grid-template-columns: 1fr !important; gap: 0 !important }
-.v15 .footer-instagram { margin-top: 22px !important; margin-bottom: 0 !important }
 
 /* v16 */
 .v16 .hero-link { color: #FFFFFF !important }
@@ -876,20 +878,12 @@ body.visit-modal-open { overflow: hidden }
 .v16 .testimonials-head h2 { line-height: 1.03 !important; letter-spacing: -.055em !important }
 .v16 .testimonial-hint:after { content: "" !important }
 .v16 .director-person:nth-child(2) .portrait img { object-position: 50% 46% !important; transform: scale(1.09) !important; transform-origin: 50% 46% !important }
-.v16 .footer-grid { display: block !important }
-.v16 .footer-grid > div,
-.v16 .footer-grid > div:last-child { display: flex !important; flex-direction: column !important; align-items: flex-start !important; justify-content: flex-start !important; width: 100% !important }
-.v16 .footer-grid p { margin: 0 0 12px !important; max-width: 100% !important }
-.v16 .footer-grid a { display: block !important; margin: 0 0 10px !important; width: auto !important }
-.v16 .footer-instagram { margin: 0 !important }
-.v16 .nav-logo,
-.v16 .footer-logo { background: transparent !important; box-shadow: none !important }
+.v16 .nav-logo, .v16 .footer-logo { background: transparent !important; box-shadow: none !important }
 
 /* v18 */
 .v18 .nav-logo,
 .v18 .footer-logo { background: transparent !important; box-shadow: none !important }
 .v18 .visit-modal-head { text-align: center !important; padding: 2px 42px 0 !important }
-.v18 .visit-modal-kicker { display: block !important; margin: 0 auto 8px !important; color: var(--red) !important; font-family: "Manrope",Arial,sans-serif !important; font-size: clamp(1.18rem,3.4vw,1.52rem) !important; font-weight: 800 !important; letter-spacing: .09em !important; line-height: 1.08 !important; text-align: center !important }
 .v18 .visit-modal-head h3 { margin: 0 auto 10px !important; color: var(--blue) !important; font-family: "Manrope",Arial,sans-serif !important; font-size: clamp(1.35rem,4.4vw,1.82rem) !important; font-weight: 700 !important; line-height: 1.12 !important; letter-spacing: -.025em !important; text-align: center !important }
 .v18 .visit-modal-head p { margin: 0 auto 24px !important; max-width: 430px !important; color: var(--muted) !important; font-family: "DM Sans",Arial,sans-serif !important; font-size: 1rem !important; font-weight: 400 !important; line-height: 1.5 !important; text-align: center !important }
 .v18 #visitForm label { text-align: left !important; font-family: "DM Sans",Arial,sans-serif !important }
@@ -1038,7 +1032,8 @@ body.visit-modal-open { overflow: hidden }
 
   .partners { padding: 65px 0 }
   .partner-track { gap: 36px }
-  .partner-logo  { width: 165px; height: 80px; padding: 8px 12px }
+  .partner-logo { width:auto; height:68px; padding:8px 12px; }
+  .partner-logo img{ height:52px!important; width:auto!important; }
   .partners-title { margin-bottom: 34px }
   .partners-title h2 { font-size: clamp(1.35rem,5.3vw,2rem) }
 
@@ -1055,7 +1050,11 @@ body.visit-modal-open { overflow: hidden }
   .visit-pin { width: 22px; height: 22px }
   .visit-pin:after { width: 7px; height: 7px; left: 8px; top: 8px }
   .map-frame { height: 335px !important; border-radius: 16px !important }
-  .footer-grid { grid-template-columns: 1fr; gap: 20px }
+  .footer{ padding:58px 7vw 30px;}
+  .footer-logo{ width:min(220px,68vw); margin-bottom:32px;}
+  .footer-grid{ grid-template-columns:1fr; gap:36px; padding:34px 0 38px;}
+  .footer-about p{ max-width:100%;}
+  .footer-column h3{ margin-bottom:14px;}
 
   /* v10 mobile */
   .v10 .mission-lead { padding: 26px 0 34px !important }
@@ -1224,7 +1223,6 @@ body.visit-modal-open { overflow: hidden }
 
   /* v18 mobile */
   .v18 .visit-modal-head { padding: 2px 32px 0 !important }
-  .v18 .visit-modal-kicker { font-size: 1.15rem !important }
   .v18 .visit-modal-head h3 { font-size: 1.58rem !important }
   .v18 .visit-modal-head p  { font-size: .96rem !important }
 

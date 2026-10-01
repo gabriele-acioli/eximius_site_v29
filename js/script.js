@@ -1,4 +1,7 @@
+/* NAVEGAÇÃO — comportamento ao rolar a página */
 const nav=document.getElementById('nav');addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>28),{passive:true});
+
+/* ANIMAÇÕES GERAIS DE ENTRADA — elementos .reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{
   if(e.target.classList.contains('mission-topic')){
     if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
@@ -7,11 +10,13 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{
   }
 }),{threshold:.04,rootMargin:'0px 0px 6% 0px'});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
+/* TRAJETÓRIA EXIMIUS — troca entre segmentos de ensino */
 const segNames=['<span class="segment-one-line">Educação Infantil</span>','<span class="segment-one-line">Ensino Fundamental</span><span class="segment-subline">Anos Iniciais</span>','<span class="segment-one-line">Ensino Fundamental</span><span class="segment-subline">Anos Finais</span>','<span class="segment-one-line">Ensino Médio</span>'];
 const segSlides=[...document.querySelectorAll('.segment-slide')];let seg=0;
 function showSeg(i){seg=(i+4)%4;segSlides.forEach((s,j)=>s.classList.toggle('active',j===seg));document.getElementById('segTitle').innerHTML=segNames[seg];document.getElementById('segmentos').dataset.segment=seg}
 document.getElementById('segPrev').onclick=()=>showSeg(seg-1);document.getElementById('segNext').onclick=()=>showSeg(seg+1);
 
+/* PROJETOS — carrossel e abertura dos cards */
 function attachProjectCard(card){
   const btn=card.querySelector('.project-toggle');
   if(btn)btn.addEventListener('click',e=>{e.stopPropagation();card.classList.toggle('open')});
@@ -102,6 +107,7 @@ document.querySelectorAll('.lab-node').forEach(b=>b.onclick=()=>{
   center.style.background=b.dataset.color||'#073763';
 });
 
+/* RESULTADOS — carrossel automático */
 const rt=document.getElementById('resultsTrack');
 let resultsReady=false, resultSeqWidth=0, resultPauseUntil=0, lastResultTime=0;
 function setupResults(){
@@ -142,7 +148,7 @@ function animateResults(t){
 }
 addEventListener('load',()=>{setupResults();requestAnimationFrame(animateResults)});
 
-
+/* PROPOSTA PEDAGÓGICA — abertura dos tópicos */
 document.querySelectorAll('.mission-topic-head').forEach(head=>{
   head.addEventListener('click',()=>{
     const topic=head.closest('.mission-topic');
@@ -170,6 +176,7 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
   obs.observe(section);
 })();
 
+/* ESTRUTURA — interação da mandala de laboratórios */
 (() => {
   const wheel=document.getElementById('labWheel');
   const detail=document.getElementById('labDetail');
@@ -254,6 +261,7 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
   paint();
 })();
 
+/* ESTRUTURA — mandala ativa e rotação automática */
 (() => {
   const wheel=document.getElementById('labWheelV14');
   const detail=document.getElementById('labDetailV14');
@@ -357,6 +365,7 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
   requestAnimationFrame(spin);
 })();
 
+/* MATRÍCULAS — abertura e fechamento do formulário */
 (() => {
   const modal=document.getElementById('visitModal');
   const triggers=[...document.querySelectorAll('.enrollment-modal-trigger')];
@@ -381,16 +390,28 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
   triggers.forEach(el=>el.addEventListener('click',open));
   modal.querySelectorAll('[data-close-visit]').forEach(el=>el.addEventListener('click',close));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close()});
+
   form?.addEventListener('submit',e=>{
     e.preventDefault();
+
     if(!form.checkValidity()){
       form.reportValidity();
       return;
     }
+
+    /* ========================================
+      ! INTEGRAÇÃO BACKEND — FORMULÁRIO
+      ======================================== */
+
     note.textContent='Dados preenchidos. A integração de envio do formulário será conectada na publicação.';
+
+    /* ========================================
+      ! FIM DA INTEGRAÇÃO BACKEND
+      ======================================== */
   });
 })();
 
+/* DEPOIMENTOS — pilha de cards e gesto de arrastar */
 (function(){
   const stack=document.getElementById('testimonialStack');
   if(!stack) return;
@@ -466,7 +487,7 @@ document.querySelectorAll('.reveal').forEach(el=>{
   }
 });
 
-/* V16 — replay the lead and proposal-card entrance whenever they re-enter the reading area. */
+/* PROPOSTA PEDAGÓGICA — repetir animação ao entrar na tela */
 (() => {
   const targets=[
     document.querySelector('.mission-lead p.reveal'),
@@ -492,9 +513,7 @@ document.querySelectorAll('.reveal').forEach(el=>{
   targets.forEach(el=>replayObserver.observe(el));
 })();
 
-/* V16 — reversible scroll-driven Trajetória EXIMIUS reveal.
-   The section is a foreground layer: as the reader scrolls down it is pulled upward
-   over the previous content; scrolling back reverses the exact motion. */
+/* TRAJETÓRIA EXIMIUS — movimento da seção durante a rolagem */
 (() => {
   const section=document.querySelector('.segments.curve-rise');
   if(!section) return;
