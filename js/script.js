@@ -96,17 +96,6 @@ function projectMove(dir){
 document.getElementById('projectPrev').onclick=()=>projectMove(-1);
 document.getElementById('projectNext').onclick=()=>projectMove(1);
 
-const selected=document.getElementById('labSelected');
-const center=document.getElementById('mandalaCenter');
-document.querySelectorAll('.lab-node').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.lab-node').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  selected.textContent=b.dataset.label;
-  document.getElementById('labDetail').classList.add('show');
-  center.classList.add('is-selected');
-  center.style.background=b.dataset.color||'#073763';
-});
-
 /* RESULTADOS — pré-carregamento antes da seção entrar na tela */
 (() => {
   const estrutura = document.getElementById('estrutura');
@@ -343,6 +332,13 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
   const detail=document.getElementById('labDetailV14');
   if(!wheel||!detail)return;
 
+  const artwork=wheel.querySelector('.v14-mandala-art');
+  if(artwork){
+    artwork.decode().catch(error=>{
+      console.error('Falha ao decodificar a imagem da mandala.',error);
+    });
+  }
+
   const labs={
     maker:{title:'Laboratório Maker',chips:['Pensamento crítico','Gestão de projetos'],text:'Um espaço para transformar ideias em projetos, experimentar soluções e aprender fazendo.'},
     alimentar:{title:'Educação Alimentar',chips:['Conhecimento nutricional','Consciência sobre sustentabilidade'],text:'Experiências que aproximam alimentação, saúde, escolhas conscientes e sustentabilidade.'},
@@ -358,7 +354,7 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
 
   let rotation=0, down=false, rotating=false, moved=0;
   let startX=0,startY=0,lastX=0,lastY=0,startRotation=0,startAngle=0;
-  let resumeAt=0,lastFrame=performance.now();
+  let resumeAt=0,lastFrame=performance.now(),frameId=0,visible=false;
 
   const norm=a=>{
     while(a>180)a-=360;
@@ -430,28 +426,43 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
   wheel.addEventListener('pointercancel',finish);
 
   const spin=t=>{
+    frameId=0;
+    if(!visible)return;
     const dt=Math.min(40,t-lastFrame); lastFrame=t;
     if(!down && !rotating && t>resumeAt){
       rotation=(rotation+dt*0.0012)%360;
       paint();
     }
-    requestAnimationFrame(spin);
+    frameId=requestAnimationFrame(spin);
   };
   paint();
-  requestAnimationFrame(spin);
+  const stage=wheel.closest('.v14-mandala-stage')||wheel;
+  const visibilityObserver=new IntersectionObserver(entries=>{
+    const isVisible=entries.some(entry=>entry.isIntersecting);
+    if(isVisible===visible)return;
+    visible=isVisible;
+    wheel.classList.toggle('is-visible',visible);
+    if(visible){
+      lastFrame=performance.now();
+      frameId=requestAnimationFrame(spin);
+    }else if(frameId){
+      cancelAnimationFrame(frameId);
+      frameId=0;
+    }
+  });
+  visibilityObserver.observe(stage);
 })();
 
 /* MATRÍCULAS — abertura e fechamento do formulário */
 (() => {
   const modal=document.getElementById('visitModal');
   const triggers=[...document.querySelectorAll('.enrollment-modal-trigger')];
-  const form=document.getElementById('visitForm');
-  const note=document.getElementById('visitFormNote');
   if(!modal||!triggers.length)return;
   let lastFocus=null;
   const open=e=>{
     e?.preventDefault?.();
     lastFocus=document.activeElement;
+    modal.removeAttribute('inert');
     modal.classList.add('open');
     modal.setAttribute('aria-hidden','false');
     document.body.classList.add('visit-modal-open');
@@ -460,30 +471,32 @@ document.querySelectorAll('.mission-topic-head').forEach(head=>{
   const close=()=>{
     modal.classList.remove('open');
     modal.setAttribute('aria-hidden','true');
+    modal.setAttribute('inert','');
     document.body.classList.remove('visit-modal-open');
     lastFocus?.focus?.();
   };
   triggers.forEach(el=>el.addEventListener('click',open));
   modal.querySelectorAll('[data-close-visit]').forEach(el=>el.addEventListener('click',close));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))close()});
-
-  form?.addEventListener('submit',e=>{
-    e.preventDefault();
-
-    if(!form.checkValidity()){
-      form.reportValidity();
+  document.addEventListener('keydown',e=>{
+    if(!modal.classList.contains('open'))return;
+    if(e.key==='Escape'){
+      close();
       return;
     }
+    if(e.key!=='Tab')return;
 
-    /* ========================================
-      ! INTEGRAÇÃO BACKEND — FORMULÁRIO
-      ======================================== */
-
-    note.textContent='Dados preenchidos. A integração de envio do formulário será conectada na publicação.';
-
-    /* ========================================
-      ! FIM DA INTEGRAÇÃO BACKEND
-      ======================================== */
+    const focusable=[...modal.querySelectorAll('button:not([disabled]),input:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')]
+      .filter(el=>!el.hasAttribute('hidden'));
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(!first){
+      e.preventDefault();
+    }else if(e.shiftKey&&(document.activeElement===first||!modal.contains(document.activeElement))){
+      e.preventDefault();
+      last.focus();
+    }else if(!e.shiftKey&&(document.activeElement===last||!modal.contains(document.activeElement))){
+      e.preventDefault();
+      first.focus();
+    }
   });
 })();
 

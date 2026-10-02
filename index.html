@@ -14,7 +14,6 @@
     rel="stylesheet" />
   <link href="css/styles.css" rel="stylesheet" />
   <link href="css/custom.css" rel="stylesheet" />
-  <meta content="EXIMIUS landing page — split project from V29" name="generator" />
 </head>
 
 <body class="v10 v11 v12 v13 v14 v15 v16 v17 v18 v20 v21 v22 v23 v24 v25 v26 v27 v28">
@@ -126,7 +125,7 @@
               <div class="mission-topic-expanded-image"><img
                   alt="Família e escola celebrando uma conquista de estudante do Colégio EXIMIUS"
                   data-flickr-source="https://flic.kr/p/2sDAqJ7" decoding="async" loading="lazy"
-                  src="assets/images/mission/parceria-escola-familia.png" /></div>
+                  src="assets/images/mission/parceria-escola-familia.jpg" /></div>
             </div>
           </article>
         </div>
@@ -550,7 +549,7 @@
           </div>
         </div>
       </div>
-      <div aria-hidden="true" class="visit-modal" id="visitModal">
+      <div aria-hidden="true" class="visit-modal" id="visitModal" inert>
         <div class="visit-modal-backdrop" data-close-visit=""></div>
         <div aria-labelledby="visitModalTitle" aria-modal="true" class="visit-modal-dialog" role="dialog">
           <button aria-label="Fechar" class="visit-modal-close" data-close-visit="" type="button">×</button>
@@ -560,10 +559,14 @@
           </div>
           <!-- ! FORMULÁRIO DE MATRÍCULAS — INTEGRAÇÃO BACKEND -->
           <form id="visitForm" novalidate="">
-            <label>Nome<input autocomplete="name" name="nome" required="" type="text" /></label>
-            <label>E-mail<input autocomplete="email" name="email" required="" type="email" /></label>
-            <label>WhatsApp<input autocomplete="tel" name="whatsapp" required="" type="tel" /></label>
-            <label>Mensagem<textarea name="mensagem" required="" rows="4"></textarea></label>
+            <label for="visitName">Nome<input autocomplete="name" id="visitName" name="nome" required=""
+                type="text" /></label>
+            <label for="visitEmail">E-mail<input autocomplete="email" id="visitEmail" name="email" required=""
+                type="email" /></label>
+            <label for="visitWhatsapp">WhatsApp<input autocomplete="tel" id="visitWhatsapp" name="whatsapp"
+                required="" type="tel" /></label>
+            <label for="visitMessage">Mensagem<textarea id="visitMessage" name="mensagem" required=""
+                rows="4"></textarea></label>
             <button class="visit-submit" type="submit">Enviar</button>
             <p aria-live="polite" class="visit-form-note" id="visitFormNote"></p>
           </form>

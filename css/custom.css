@@ -53,6 +53,7 @@
     flex-direction:row;
     flex-wrap:nowrap;
     align-items:center;
+    justify-content:center;
     gap:10px;
   }
   .hero-actions .hero-link,
@@ -101,7 +102,7 @@
   .mission-intro h2{
     max-width:none!important;
     white-space:nowrap!important;
-    font-size:clamp(2.8rem,3.5vw,5.25rem)!important;
+    font-size:clamp(1.9rem,3.5vw,5.25rem)!important;
     line-height:.98!important;
     letter-spacing:-.055em!important;
     text-align:center;
@@ -786,5 +787,44 @@
   .campaign-slogan .campaign-line{
     display:block!important;
     white-space:normal!important;
+  }
+}
+
+@media (min-width:761px) and (max-width:1240px){
+  .direction-inner{
+    width:min(1120px,94vw)!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1.1fr) minmax(0,.5fr) minmax(0,.5fr)!important;
+    gap:clamp(14px,2vw,24px)!important;
+  }
+  .direction-copy{
+    grid-column:1!important;
+  }
+  .direction-copy blockquote{
+    box-sizing:border-box!important;
+    width:100%!important;
+    max-width:none!important;
+    padding:clamp(18px,2.5vw,30px)!important;
+    font-size:clamp(1.55rem,2.8vw,2.2rem)!important;
+  }
+  .direction .quote-line{
+    white-space:normal!important;
+  }
+  .director-portraits{
+    display:contents!important;
+  }
+  .director-portraits .director-person:nth-child(1){
+    grid-column:2!important;
+  }
+  .director-portraits .director-person:nth-child(2){
+    grid-column:3!important;
+  }
+  .director-person::before{
+    width:min(220px,22vw)!important;
+    height:min(220px,22vw)!important;
+  }
+  .director-person .portrait{
+    width:min(220px,22vw)!important;
+    height:min(220px,22vw)!important;
   }
 }

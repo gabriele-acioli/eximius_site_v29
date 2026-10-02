@@ -79,15 +79,17 @@ button        { font: inherit }
 .mission-lead .shell { display: flex; justify-content: center }
 .mission-lead p {
   max-width: 980px; margin: 0 auto; text-align: left;
-  font: 800 clamp(2rem,4.6vw,4.9rem)/1.02 "Manrope",Arial,sans-serif;
+  font: 500 clamp(1.85rem,2.5vw,2.5rem)/1.2 "Manrope",Arial,sans-serif;
   letter-spacing: -.05em; color: var(--blue);
   transform: rotate(-.7deg); transform-origin: left center;
 }
-.mission-lead p > span { display: block }
+.mission-lead p > span { display: block; font-size: 1em; font-weight: 500; line-height: 1.2 }
 .mission-lead mark,
 .commit-mark {
   position: relative; display: inline-block; color: var(--blue);
   background: transparent; padding: 0 .06em; z-index: 0;
+  font-size: 1em;
+  font-weight: 800;
 }
 .mission-lead mark:before,
 .commit-mark:before {
@@ -95,8 +97,8 @@ button        { font: inherit }
   left: -.03em; right: -.03em; bottom: .05em; height: .42em;
   background: var(--yellow); opacity: .92; transform: rotate(-1.2deg); border-radius: .06em;
 }
-.mission-lead mark { font-size: 1.08em; margin: .06em 0 }
-.commit-mark { font-weight: 900 }
+.mission-lead mark { margin: .06em 0 }
+.commit-mark { font-weight: 800 }
 
 .mission-topics { background: var(--navy) !important; color: #fff !important; padding: 46px 0 50px !important; overflow: hidden }
 .mission-topic-list { width: min(1080px,90vw) !important }
@@ -153,8 +155,12 @@ button        { font: inherit }
 .topic-index, .mission-topic strong { display: none !important }
 
 .mission-close { background: #fff !important; padding: 48px 0 80px; border: 0 !important }
-.mission-close p { font-weight: 700 !important; color: var(--blue) !important; margin: 0 0 28px }
-.verbs { display: flex; flex-wrap: wrap; gap: 12px }
+.mission-close .shell { text-align: center }
+.mission-close p {
+  font: 500 clamp(1.65rem,2.3vw,2.2rem)/1.2 "Manrope",Arial,sans-serif !important;
+  color: var(--blue) !important; margin: 0 auto 28px; text-align: center;
+}
+.verbs { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center }
 .verbs span { font: 800 clamp(2rem,4.6vw,4.8rem)/1 "Manrope",Arial,sans-serif; letter-spacing: -.055em }
 .verbs span:nth-child(1) { color: #2f7650 !important }
 .verbs span:nth-child(2) { color: var(--red) !important }
@@ -260,9 +266,11 @@ button        { font: inherit }
   --counter-rotation: 0deg;
   position: absolute; width: min(980px,92vw); aspect-ratio: 1;
   right: -260px; top: 16px; transform-origin: 50% 50%;
-  touch-action: pan-y; cursor: grab; will-change: transform; user-select: none;
+  touch-action: pan-y; cursor: grab; user-select: none;
 }
 .v14-mandala-rotor.dragging { cursor: grabbing }
+.v14-mandala-rotor.is-visible,
+.v14-mandala-rotor.dragging { will-change: transform }
 .v14-mandala-art { width: 100% !important; height: 100% !important; object-fit: contain !important; pointer-events: none; user-select: none }
 .v14-lab-plus {
   position: absolute; z-index: 8; width: 50px; height: 50px;
@@ -288,7 +296,8 @@ button        { font: inherit }
 .v14-lab-detail h3 { margin: 0 40px 10px 0; color: var(--blue); font: 800 clamp(1.55rem,2.6vw,2.35rem)/1 "Manrope",Arial,sans-serif; letter-spacing: -.04em }
 .v14-lab-detail p { margin: 0 0 16px; line-height: 1.52; color: var(--muted) }
 .v14-lab-detail .lab-competencies { display: flex; flex-wrap: wrap; gap: 8px }
-.v14-lab-detail .lab-chip { display: inline-flex; padding: 7px 10px; border-radius: 999px; background: var(--ice); color: var(--blue); font-size: .76rem; font-weight: 700 }
+.v14-lab-detail .lab-chip { display: inline-flex; padding: 7px 10px; border-radius: 999px; background: var(--ice); color: var(--blue); font-size: .76rem; font-weight: 700; text-decoration: underline; text-decoration-color: var(--yellow); text-decoration-thickness: 2px; text-underline-offset: 3px }
+.v14 .v14-lab-detail .lab-chip { font-size: 1rem !important }
 .v14-lab-close { position: absolute; right: 14px; top: 14px; width: 36px; height: 36px; border: 0; border-radius: 50%; background: var(--blue); color: #fff; font-size: 1.4rem; cursor: pointer }
 
 /* Robust arrow (shared) */
@@ -979,7 +988,7 @@ body.visit-modal-open { overflow: hidden }
   .mission-intro { min-height: 0; padding: 64px 0 34px }
   .mission-intro h2 { max-width: 90vw; font-size: clamp(1.65rem,7.5vw,2.5rem); line-height: 1.04; text-wrap: balance; text-align: center }
   .mission-lead { padding: 28px 0 40px !important }
-  .mission-lead p { font-size: clamp(1.85rem,8.6vw,3.25rem) !important; line-height: 1.04 !important; transform: rotate(-.5deg) }
+  .mission-lead p { font-family: "DM Sans",Arial,sans-serif !important; font-size: clamp(1.1rem,4.5vw,1.25rem) !important; font-weight: 500 !important; line-height: normal !important; transform: rotate(-.5deg) }
   .mission-topics { padding: 28px 0 34px !important }
   .mission-topic-head { min-height: 105px; grid-template-columns: 82px minmax(0,1fr) 42px; gap: 14px; padding: 14px 4px }
   .mission-topic-thumb { width: 82px; height: 68px; border-radius: 12px }
@@ -991,7 +1000,7 @@ body.visit-modal-open { overflow: hidden }
   .mission-topic.reveal { transform: translateX(-36px) }
   .mission-topic:nth-child(even).reveal { transform: translateX(36px) }
   .mission-close { padding: 38px 0 62px }
-  .mission-close p { font-size: clamp(1.1rem,4.5vw,1.25rem) }
+  .mission-close p { font-family: "DM Sans",Arial,sans-serif !important; font-size: clamp(1.1rem,4.5vw,1.25rem) !important; font-weight: 500 !important; line-height: normal !important }
   .verbs { gap: 4px }
   .verbs span { font-size: clamp(2.15rem,9.4vw,3.8rem) }
 
@@ -1062,7 +1071,8 @@ body.visit-modal-open { overflow: hidden }
 
   /* v10 mobile */
   .v10 .mission-lead { padding: 26px 0 34px !important }
-  .v10 .mission-lead p { margin-left: 0 !important; max-width: 88vw !important; font-size: 1.06rem !important }
+  .v10 .mission-lead p { margin-left: 0 !important; max-width: 88vw !important; font-family: "DM Sans",Arial,sans-serif !important; font-size: clamp(1.1rem,4.5vw,1.25rem) !important; font-weight: 500 !important; line-height: normal !important }
+  .v10 .mission-lead mark { font-weight: 800 !important }
   .v10 .mission-topic-head { grid-template-columns: 82px minmax(0,1fr) 46px !important; gap: 12px !important; min-height: 98px !important; padding: 12px 14px !important }
   .v10 .mission-topic-thumb { width: 82px !important; height: 70px !important; border-radius: 12px !important }
   .v10 .mission-topic h3 { font-size: clamp(1.28rem,5.7vw,2rem) !important }
@@ -1205,7 +1215,7 @@ body.visit-modal-open { overflow: hidden }
   .v15 .mission-topics { padding-bottom: 4px !important }
   .v15 .mission-close { padding: 36px 0 !important }
   .v15 .mission-close p { margin: 0 auto 20px !important }
-  .v15 .verbs { display: grid !important; grid-template-columns: 1fr 1fr !important; column-gap: clamp(30px,8vw,52px) !important; row-gap: 24px !important; align-items: center !important; justify-items: center !important }
+  .v15 .verbs { display: grid !important; grid-template-columns: max-content max-content !important; width: max-content !important; max-width: 92vw !important; column-gap: clamp(30px,8vw,52px) !important; row-gap: 24px !important; margin-left: auto !important; margin-right: auto !important; justify-content: center !important; align-items: center !important; justify-items: center !important }
   .v15 .verbs span { font-size: clamp(1.55rem,7vw,2.55rem) !important }
   .v15 .testimonials { padding: 70px 0 78px }
   .v15 .testimonials-head h2 { font-size: clamp(2.1rem,9vw,3rem); margin-bottom: 30px }
@@ -1227,9 +1237,9 @@ body.visit-modal-open { overflow: hidden }
   .v16 .segments.curve-rise.in { margin-top: 16px !important }
 
   /* v18 mobile */
-  .v18 .visit-modal-head { padding: 2px 32px 0 !important }
+  .v18 .visit-modal-head { padding: 2px 0 0 !important }
   .v18 .visit-modal-head h3 { font-size: 1.58rem !important }
-  .v18 .visit-modal-head p  { font-size: .96rem !important }
+  .v18 .visit-modal-head p  { max-width: none !important; font-size: .9rem !important; line-height: 1.4 !important }
 
   /* v20 mobile */
   .v20 .campaign-slogan { font-size: clamp(2.45rem,10.8vw,4.35rem) !important; line-height: .94 !important; letter-spacing: -.055em !important }
@@ -1262,11 +1272,13 @@ body.visit-modal-open { overflow: hidden }
   .v25 .v14-structure .structure-head { width: 90vw !important; margin: 0 auto 24px !important }
   .v25 .v14-structure .structure-head h2 { font-size: clamp(2.1rem,9vw,3rem) !important; line-height: .97 !important; margin: 0 auto 18px !important }
   .v25 .v14-structure .structure-sub { max-width: 88vw !important; line-height: 1.55 !important }
-  .v25 .v14-mandala-stage { height: 107vw !important; min-height: 0 !important; max-height: none !important; margin: 0 !important; overflow: visible !important }
-  .v25 .v14-mandala-rotor { width: 82vw !important; left: 9vw !important; right: auto !important; top: 17vw !important }
+  .v25 .v14-mandala-stage { height: 95vw !important; min-height: 0 !important; max-height: none !important; margin: 0 !important; overflow: hidden !important }
+  .v25 .v14-mandala-viewport { overflow: hidden !important }
+  .v25 .v14-mandala-rotor { width: 180vw !important; left: auto !important; right: -100vw !important; top: 5vw !important }
   .v25 .v14-lab-plus { width: 44px !important; height: 44px !important; border-width: 2.5px !important; font-size: 1.75rem !important }
   .v25 .v14-lab-detail { left: 4.5vw !important; top: 14vw !important; width: 61vw !important; padding: 20px 18px 18px !important; border-radius: 20px !important }
-  .v25 .v14-lab-detail h3 { font-size: clamp(1.35rem,6vw,2rem) !important }
+  .v25 .v14-lab-detail h3 { font-size: clamp(1.5rem,6.4vw,2rem) !important }
+  .v25 .v14-lab-detail p { font-size: 1rem !important; line-height: 1.5 !important }
 
   /* v26 mobile */
   .v26 .segment-title-row { grid-template-columns: 46px minmax(0,1fr) 46px !important; gap: 10px !important; min-height: 90px !important; width: 100% !important; padding: 0 12px !important; box-sizing: border-box !important }
@@ -1299,4 +1311,3 @@ body.visit-modal-open { overflow: hidden }
   .v11 .mandala-rotor { --wheel-size: min(1080px,92vw) !important; right: calc(var(--wheel-size) / -2) !important; top: 0 !important }
   .v11 .lab-detail { top: 90px !important }
 }
-
