@@ -230,7 +230,7 @@ button        { font: inherit }
 .projects { background: var(--blue); color: #fff; padding: 4vw 0; overflow: hidden; min-height: 100svh; display: flex; flex-direction: column; justify-content: center }
 .projects-head { width: min(1180px,90vw); margin: 0 auto 48px }
 .projects h2 { font: 800 clamp(3.5rem,7vw,7.8rem)/.9 "Manrope",Arial,sans-serif; letter-spacing: -.065em; margin: 0 0 18px }
-.projects-head p { max-width: none; margin: 0; color: rgba(255,255,255,.73); font-size: 1.5vw; line-height: 1.6; white-space: nowrap }
+.projects-head p { max-width: none; margin: 0; color: rgba(255,255,255,.73); font-size: clamp(.98rem,4vw,1.15rem); line-height: 1.6 }
 .project-shell { position: relative }
 .project-track { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 8px max(5vw,calc((100vw - 1180px)/2)) 24px; overscroll-behavior-x: contain }
 .project-track::-webkit-scrollbar { display: none }
@@ -251,7 +251,7 @@ button        { font: inherit }
 .structure-head { width: min(1100px,90vw); margin: 0 auto 54px; text-align: center !important }
 .structure-head .eyebrow { color: var(--red) }
 .structure-head h2 { font: 800 clamp(3.4rem,7vw,7rem)/.9 "Manrope",Arial,sans-serif; letter-spacing: -.065em; margin: 0 0 20px }
-.structure-sub { margin: 0 auto; color: var(--muted); font-size: 1.5vw; line-height: 1.6 }
+.structure-sub { margin: 0 auto; color: var(--muted); font-size: clamp(.98rem,4vw,1.15rem); line-height: 1.6 }
 
 /* v14 mandala (active structure variant) */
 .v14-mandala-stage { position: relative; height: min(760px,72vw); min-height: 620px; margin-top: 8px; overflow: hidden; background: #fff }
@@ -310,19 +310,19 @@ button        { font: inherit }
 .results-head { width: min(1180px,90vw); margin: 0 auto 34px; text-align: center }
 .results-head h2 { font: 800 clamp(3rem,6.5vw,6.7rem)/.95 "Manrope",Arial,sans-serif; letter-spacing: -.055em; margin: 0 auto }
 .results-head h2 span { color: var(--yellow) }
-.results-sub { margin: 20px auto 0; color: rgba(255,255,255,.78); font-size: 1.5vw; line-height: 1.45 }
+.results-sub { margin: 20px auto 0; color: rgba(255,255,255,.78); font-size: clamp(.98rem,4vw,1.15rem); line-height: 1.45 }
 .results-track { display: flex; gap: 26px; overflow-x: auto; scroll-snap-type: none; scrollbar-width: none; padding: 10px 0 58px; cursor: grab; user-select: none; -webkit-overflow-scrolling: touch }
 .results-track:active { cursor: grabbing }
 .results-track::-webkit-scrollbar { display: none }
-.result-card { scroll-snap-align: center; flex: 0 0 clamp(320px,26vw,460px); flex-shrink: 0; position: relative; overflow: visible; aspect-ratio: 4/5; background: transparent; border: 0; outline: none; box-shadow: none }
-.result-card img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 22px !important; box-shadow: 0 26px 55px rgba(79,8,15,.25) !important; outline: 3px solid var(--yellow) !important }
+.result-card { scroll-snap-align: center; flex: 0 0 clamp(320px,26vw,460px); flex-shrink: 0; position: relative; overflow: visible; aspect-ratio: 4/5; margin: 0; background: transparent; border: 0; outline: none; box-shadow: none }
+.result-card img { width: 100% !important; height: 100% !important; object-fit: cover !important; border: 3px solid var(--yellow) !important; border-radius: 22px !important; box-shadow: none !important }
 .result-card.featured { outline: 0 !important }
 .result-link {
   position: absolute; z-index: 6; right: 18px; bottom: -24px;
   width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--yellow);
   background: #fff; color: var(--blue); display: grid; place-items: center; padding: 0;
   font: 800 2rem/1 "Manrope",Arial,sans-serif;
-  box-shadow: 0 10px 24px rgba(79,8,15,.22); cursor: pointer;
+  box-shadow: none; cursor: pointer;
   transition: transform .2s ease, background .2s ease;
 }
 .result-link:hover { transform: translateY(-2px); background: var(--yellow) }
@@ -544,7 +544,7 @@ body.visit-modal-open { overflow: hidden }
 .v10 .structure { background: #fff !important; padding: 108px 0 92px !important; overflow: hidden !important }
 .v10 .structure-head { width: min(1080px,90vw) !important; margin: 0 auto 34px !important; text-align: left !important }
 .v10 .structure-head h2 { text-align: left !important; margin: 0 0 20px !important; font-size: clamp(3.35rem,7.2vw,7rem) !important }
-.v10 .structure-sub { max-width: none !important; margin: 0 !important; text-align: left !important; font-size: 1.5vw; line-height: 1.6 !important; color: var(--blue) !important }
+.v10 .structure-sub { max-width: none !important; margin: 0 !important; text-align: left !important; font-size: clamp(.98rem,4vw,1.15rem); line-height: 1.6 !important; color: var(--blue) !important }
 .v10 .structure-sub strong { color: var(--blue); font-weight: 900 }
 
 .v10 .mandala-stage { width: min(1180px,100%); min-height: 720px; margin: 0 auto; position: relative }
@@ -971,13 +971,13 @@ body.visit-modal-open { overflow: hidden }
   .nav-cta  { font-size: .72rem; padding: 8px 11px }
 
   .hero { min-height: 680px }
-  .hero video { object-position: center center }
+  .hero video { object-position: center 88%; translate: 0 -6% }
   .hero-copy { left: 6vw; right: 6vw; bottom: 6.5vh }
-  .hero h1 { font-size: clamp(2.8rem,12.5vw,4.7rem); line-height: .9 }
-  .hero-sub { font-size: 1.08rem; line-height: 1.36; margin-top: 20px; padding-left: 12px }
+  .hero h1 { font-size: clamp(2.45rem,10vw,3.4rem); line-height: .92 }
+  .hero-sub { max-width: 86%; white-space: normal; font-size: clamp(1rem,4.2vw,1.15rem); line-height: 1.25; margin-top: 16px; padding: 6px 0; border-left: 0 }
 
-  .mission-intro { min-height: 45svh; padding: 66px 0 34px }
-  .mission-intro h2 { font-size: clamp(2.75rem,11.7vw,4.7rem) }
+  .mission-intro { min-height: 0; padding: 64px 0 34px }
+  .mission-intro h2 { max-width: 90vw; font-size: clamp(1.65rem,7.5vw,2.5rem); line-height: 1.04; text-wrap: balance; text-align: center }
   .mission-lead { padding: 28px 0 40px !important }
   .mission-lead p { font-size: clamp(1.85rem,8.6vw,3.25rem) !important; line-height: 1.04 !important; transform: rotate(-.5deg) }
   .mission-topics { padding: 28px 0 34px !important }
@@ -991,11 +991,11 @@ body.visit-modal-open { overflow: hidden }
   .mission-topic.reveal { transform: translateX(-36px) }
   .mission-topic:nth-child(even).reveal { transform: translateX(36px) }
   .mission-close { padding: 38px 0 62px }
-  .mission-close p { font-size: 1.06rem }
+  .mission-close p { font-size: clamp(1.1rem,4.5vw,1.25rem) }
   .verbs { gap: 4px }
   .verbs span { font-size: clamp(2.15rem,9.4vw,3.8rem) }
 
-  .segments { margin-top: -8vw !important; padding-top: 86px !important }
+  .segments { margin-top: -8vw !important; padding-top: 64px !important }
   .segment-title-row { min-height: 150px; grid-template-columns: 48px minmax(0,1fr) 48px; gap: 9px }
   .segment-title-row h2 { font-size: clamp(2.05rem,8.1vw,3rem) !important; line-height: .98 !important }
   .segment-title-row .robust-arrow { width: 46px !important; height: 46px !important; border-radius: 14px !important }
@@ -1008,36 +1008,40 @@ body.visit-modal-open { overflow: hidden }
   .carousel-arrows button { width: 52px !important; height: 52px !important; border-radius: 16px !important }
   .carousel-arrows .robust-arrow:before { width: 10px; height: 10px; border-width: 0 3px 3px 0 }
 
-  .projects { padding: 90px 0 }
+  .projects { min-height: 0 !important; justify-content: flex-start; padding: 64px 0 72px }
   .projects h2 { font-size: clamp(3.2rem,13.5vw,5.7rem) }
+  .projects-head p { font-size: clamp(1.1rem,4.5vw,1.25rem) }
   .project-card { flex-basis: 78vw; border-radius: 24px }
 
   .structure-head { text-align: center; width: 90vw; margin-bottom: 52px !important }
   .structure-head h2 { font-size: clamp(3.1rem,12.6vw,5rem) }
   .structure-sub { font-size: .98rem; padding: 0 2vw }
 
-  .results { padding: 95px 0 105px }
+  .results { padding: 64px 0 74px }
   .results-head h2 { font-size: clamp(3.7rem,14vw,6rem) }
   .result-card { flex-basis: 72vw }
 
-  .direction { padding: 80px 0 }
-  .direction-inner { display: block; width: 90vw }
-  .direction blockquote { font-size: clamp(2.5rem,10.5vw,4.3rem) }
+  .direction { padding: 64px 0 48px }
+  .direction-inner { display: block; width: 100% }
+  .direction blockquote { width: 100% !important; max-width: none !important; padding: 0 !important; font-size: clamp(1.55rem,7.4vw,2.35rem); line-height: 1.04; letter-spacing: -.06em }
+  .direction .quote-line { display: inline !important; white-space: normal !important }
   .director-portraits { margin-top: 38px; gap: 18px }
   .director-person { max-width: 48% }
   .director-person .portrait { width: min(40vw,180px) !important; height: min(40vw,180px) !important }
+  .director-person::before { display: none !important }
+  .director-person .portrait { box-shadow: 0 0 0 4px rgba(255,196,3,.2) !important }
   .director-person strong { font-size: .9rem }
   .director-person span   { font-size: .78rem }
   .director-person:first-child .portrait img { transform: scale(1.28); transform-origin: 50% 34% }
 
-  .partners { padding: 65px 0 }
+  .partners { padding: 64px 0 }
   .partner-track { gap: 36px }
   .partner-logo { width:auto; height:68px; padding:8px 12px; }
   .partner-logo img{ height:52px!important; width:auto!important; }
   .partners-title { margin-bottom: 34px }
-  .partners-title h2 { font-size: clamp(1.35rem,5.3vw,2rem) }
+  .partners-title h2 { font-size: clamp(2.1rem,9vw,3rem) }
 
-  .final { padding-top: 76px }
+  .final { padding-top: 64px }
   .final-hero { text-align: center; padding-bottom: 22px !important }
   .final h2 { font-size: clamp(3.05rem,12.5vw,5rem); line-height: .92; gap: .28em }
   .final-actions { display: grid !important; grid-template-columns: 1fr !important; width: min(88vw,430px) !important; margin-left: auto !important; margin-right: auto !important; margin-top: 44px }
@@ -1058,7 +1062,7 @@ body.visit-modal-open { overflow: hidden }
 
   /* v10 mobile */
   .v10 .mission-lead { padding: 26px 0 34px !important }
-  .v10 .mission-lead p { margin-left: 0 !important; max-width: 88vw !important; font-size: 1.22rem !important }
+  .v10 .mission-lead p { margin-left: 0 !important; max-width: 88vw !important; font-size: 1.06rem !important }
   .v10 .mission-topic-head { grid-template-columns: 82px minmax(0,1fr) 46px !important; gap: 12px !important; min-height: 98px !important; padding: 12px 14px !important }
   .v10 .mission-topic-thumb { width: 82px !important; height: 70px !important; border-radius: 12px !important }
   .v10 .mission-topic h3 { font-size: clamp(1.28rem,5.7vw,2rem) !important }
@@ -1076,7 +1080,7 @@ body.visit-modal-open { overflow: hidden }
   .v10 .structure { padding: 76px 0 55px !important }
   .v10 .structure-head { width: 88vw !important; margin-bottom: 18px !important }
   .v10 .structure-head h2 { font-size: clamp(3rem,13.5vw,5rem) !important; text-align: left !important }
-  .v10 .structure-sub { font-size: 1rem !important; line-height: 1.5 !important }
+  .v10 .structure-sub { font-size: clamp(1.1rem,4.5vw,1.25rem) !important; line-height: 1.5 !important }
   .v10 .mandala-stage { min-height: 690px }
   .v10 .lab-detail { left: 6vw; top: 28px; width: min(60vw,330px); min-height: 220px; padding: 22px 20px; border-radius: 22px }
   .v10 .lab-detail h3 { font-size: clamp(1.45rem,6.7vw,2.2rem) }
@@ -1085,7 +1089,7 @@ body.visit-modal-open { overflow: hidden }
   .v10 .mandala-rotor { --wheel-size: min(820px,138vw); right: -46vw; top: 120px }
 
   /* v11 mobile */
-  .v11 .mission-lead { padding: 8px 0 22px !important }
+  .v11 .mission-lead { padding: 12px 0 !important }
   .v11 .mission-topics { padding-bottom: 20px !important }
   .v11 .mission-topic-list { gap: 14px !important }
   .v11 .mission-topic-head { grid-template-columns: 82px minmax(0,1fr) 46px !important; min-height: 96px !important }
@@ -1102,8 +1106,8 @@ body.visit-modal-open { overflow: hidden }
   .v11 .segment-slide p { padding-bottom: 4px !important }
   .v11 .structure { padding: 64px 0 20px !important }
   .v11 .structure-head { width: 88vw !important; margin-bottom: 0 !important }
-  .v11 .structure-sub { font-size: 1.02rem !important; line-height: 1.48 !important }
-  .v11 .structure-sub strong { font-size: 1.2em !important; line-height: 1.3 !important }
+  .v11 .structure-sub { font-size: clamp(1.1rem,4.5vw,1.25rem) !important; line-height: 1.48 !important }
+  .v11 .structure-sub strong { font-size: 1em !important; line-height: 1.3 !important }
   .v11 .mandala-stage { min-height: 96vw !important; height: min(690px,96vw) !important; margin-top: 0 !important }
   .v11 .mandala-rotor { --wheel-size: 178vw !important; right: -89vw !important; top: 0 !important }
   .v11 .lab-detail { left: 5vw !important; top: 10vw !important; width: 57vw !important; min-height: 0 !important; padding: 20px 18px !important; border-radius: 20px !important }
@@ -1139,25 +1143,25 @@ body.visit-modal-open { overflow: hidden }
   .v13 .mission-topic-plus { width: 42px !important; height: 42px !important; border-radius: 13px !important }
   .v13 .mission-topic-panel > p { font-size: .95rem !important; padding: 4px 18px 18px !important }
   .v13 .mission-topic-expanded-image { margin: 0 12px 12px !important; aspect-ratio: 4/3 !important; border-radius: 16px !important }
-  .v13 .mission-close { padding-top: 82px !important; padding-bottom: 96px !important }
+  .v13 .mission-close { padding-top: 24px !important; padding-bottom: 24px !important }
   .v13 .mission-close p { margin-bottom: 34px !important; color: var(--blue) !important }
   .v13 .verbs { column-gap: clamp(20px,5vw,38px) !important; row-gap: 12px !important }
   .v13 .verbs span { font-size: clamp(1.45rem,6.3vw,2.45rem) !important }
-  .v13 .segments { padding-top: 72px !important; padding-bottom: 72px !important }
+  .v13 .segments { padding-top: 64px !important; padding-bottom: 72px !important }
   .v13 .segments-head .eyebrow,
   .v13 .projects-head h2,
   .v13 .structure-head h2 { font-size: clamp(2.65rem,11.8vw,4.8rem) !important; line-height: .97 !important; gap: .10em !important }
   .v13 .segments-head .eyebrow { margin-bottom: 30px !important }
-  .v13 .segment-title-row { min-height: 92px !important; margin-bottom: 24px !important }
+  .v13 .segment-title-row { min-height: 92px !important; margin-bottom: 12px !important }
   .v13 .segment-title-row h2 { font-size: clamp(2rem,8.2vw,3.4rem) !important }
   .v13 .segment-photo { margin-bottom: 22px !important }
   .v13 .segment-slide p { padding: 0 16px 8px !important; line-height: 1.52 !important }
   .v13 .projects-head h2 { margin-bottom: 22px !important }
-  .v13 .structure { padding-top: 76px !important }
+  .v13 .structure { padding-top: 64px !important; padding-bottom: 0 !important }
   .v13 .structure-head { width: 88vw !important; margin-bottom: 4px !important }
   .v13 .structure-head h2 { margin-bottom: 22px !important }
-  .v13 .structure-sub { font-size: 1rem !important; line-height: 1.48 !important }
-  .v13 .structure-sub strong { font-size: 1.13em !important }
+  .v13 .structure-sub { font-size: clamp(1.1rem,4.5vw,1.25rem) !important; line-height: 1.48 !important }
+  .v13 .structure-sub strong { font-size: 1em !important }
   .v13 .mandala-stage { height: min(650px,92vw) !important; min-height: 92vw !important }
   .v13 .mandala-rotor { --wheel-size: 184vw !important; right: -92vw !important; top: 0 !important }
   .v13 .mandala-label { width: 21% !important; min-height: 9.5% !important }
@@ -1168,44 +1172,45 @@ body.visit-modal-open { overflow: hidden }
   .v13 .mandala-swipe-hint path { stroke-width: 5 }
   .v13 .lab-detail { left: 4.5vw !important; top: 5vw !important; width: 61vw !important }
   .v13 .results-head h2 { font-size: clamp(2.8rem,12vw,4.9rem) !important; line-height: .96 !important }
-  .v13 .results-sub { font-size: 1rem !important; line-height: 1.45 !important }
-  .v13 .direction-copy blockquote { padding: 72px 26px 76px !important }
-  .v13 .direction .quote-open, .v13 .direction .quote-close { font-size: clamp(5.2rem,20vw,7.5rem) !important }
+  .v13 .results-sub { font-size: clamp(1.1rem,4.5vw,1.25rem) !important; line-height: 1.45 !important }
+  .v13 .direction-copy blockquote { width: 100% !important; max-width: none !important; padding: 0 !important; font-size: clamp(1.55rem,7.4vw,2.35rem) !important; line-height: 1.04 !important; letter-spacing: -.06em !important }
+  .v13 .direction .quote-open, .v13 .direction .quote-close { font-size: 1em !important; line-height: 1 !important }
   .v13 .director-person .portrait { width: min(40vw,180px) !important; height: min(40vw,180px) !important }
-  .v13 .final h2 { font-size: clamp(3.15rem,12.8vw,5.4rem) !important; line-height: .86 !important }
+  .v13 .final h2 { font-size: clamp(1.55rem,7.4vw,2.35rem) !important; line-height: 1.04 !important; letter-spacing: -.02em !important; gap: .12em !important }
 
   /* v14 mobile */
-  .v14 .mission-close { padding-top: 78px !important; padding-bottom: calc(78px + 8vw) !important }
+  .v14 .mission-close { padding-top: 24px !important; padding-bottom: 24px !important }
   .v14 .mission-topic:nth-child(4) .mission-topic-expanded-image,
-  .v14 .mission-topic:nth-child(5) .mission-topic-expanded-image { aspect-ratio: 16/9 !important }
-  .v14-mandala-stage { height: 118vw; min-height: 440px; max-height: 690px; margin-top: 6px }
-  .v14-mandala-rotor { width: 178vw; right: -89vw; top: 0 }
+  .v14 .mission-topic:nth-child(5) .mission-topic-expanded-image { aspect-ratio: 4/3 !important }
+  .v14 .mission-topic .mission-topic-expanded-image img { width: 100% !important; height: 100% !important; object-fit: cover !important }
+  .v14-mandala-stage { height: 107vw; min-height: 0; max-height: none; margin: 0; overflow: visible }
+  .v14-mandala-rotor { width: 82vw; left: 9vw; right: auto; top: 17vw }
   .v14-lab-plus { width: 44px; height: 44px; border-width: 2.5px; font-size: 1.75rem }
   .v14-lab-detail { left: 4.5vw; top: 14vw; width: 61vw; padding: 20px 18px 18px; border-radius: 20px }
   .v14-lab-detail h3 { font-size: clamp(1.35rem,6vw,2rem) }
   .v14-lab-detail p  { font-size: .9rem }
   .v14-lab-close { width: 34px; height: 34px; right: 10px; top: 10px }
-  .v14 .results { padding-top: 72px !important; padding-bottom: 74px !important }
+  .v14 .results { padding-top: 64px !important; padding-bottom: 72px !important }
   .v14 .results-head { margin-bottom: 28px !important }
   .v14 .results-sub { margin-top: 16px !important }
-  .v14 .results-track { padding-bottom: 54px !important }
+  .v14 .results-track { padding-bottom: 22px !important }
   .v14 .result-link { width: 46px; height: 46px; right: 14px; bottom: -22px; font-size: 1.8rem }
-  .v14 .direction-copy blockquote { padding: 48px 18px 54px !important }
-  .v14 .direction .quote-open, .v14 .direction .quote-close { font-size: clamp(4.8rem,18vw,7rem) !important }
+  .v14 .direction-copy blockquote { width: 100% !important; max-width: none !important; padding: 0 !important; font-size: clamp(1.55rem,7.4vw,2.35rem) !important; line-height: 1.04 !important; letter-spacing: -.06em !important }
+  .v14 .direction .quote-open, .v14 .direction .quote-close { font-size: 1em !important; line-height: 1 !important }
   .v14 .direction .quote-open  { left: 0 !important; top: 6px !important }
   .v14 .direction .quote-close { right: 0 !important; bottom: 2px !important }
 
   /* v15 mobile */
   .v15 .hero-link { padding: 10px 16px !important; font-size: .9rem !important; margin-top: 22px !important }
   .v15 .mission-topics { padding-bottom: 4px !important }
-  .v15 .mission-close { padding-top: 22px !important; padding-bottom: 82px !important }
-  .v15 .mission-close p { margin-bottom: 34px !important }
+  .v15 .mission-close { padding: 36px 0 !important }
+  .v15 .mission-close p { margin: 0 auto 20px !important }
   .v15 .verbs { display: grid !important; grid-template-columns: 1fr 1fr !important; column-gap: clamp(30px,8vw,52px) !important; row-gap: 24px !important; align-items: center !important; justify-items: center !important }
   .v15 .verbs span { font-size: clamp(1.55rem,7vw,2.55rem) !important }
   .v15 .testimonials { padding: 70px 0 78px }
-  .v15 .testimonials-head h2 { font-size: clamp(2.65rem,11.5vw,4.6rem); margin-bottom: 30px }
+  .v15 .testimonials-head h2 { font-size: clamp(2.1rem,9vw,3rem); margin-bottom: 30px }
   .v15 .testimonial-stack-wrap { width: min(82vw,370px) }
-  .v15 .testimonial-card { border-radius: 20px }
+  .v15 .testimonial-card { border-radius: 20px; box-shadow: none }
   .v15 .testimonial-hint { margin-top: 42px; font-size: .82rem }
   .v15 .direction-copy blockquote { text-align: left !important }
   .v15 .direction .quote-open, .v15 .direction .quote-close { font-size: 1em !important }
@@ -1219,7 +1224,7 @@ body.visit-modal-open { overflow: hidden }
   .v16 .direction-copy blockquote { text-align: center !important }
   .v16 .director-person:nth-child(2) .portrait img { object-position: 50% 47% !important; transform: scale(1.08) !important }
   .v16 .segments.curve-rise,
-  .v16 .segments.curve-rise.in { margin-top: -9vw !important }
+  .v16 .segments.curve-rise.in { margin-top: 16px !important }
 
   /* v18 mobile */
   .v18 .visit-modal-head { padding: 2px 32px 0 !important }
@@ -1233,11 +1238,11 @@ body.visit-modal-open { overflow: hidden }
   .v21 .campaign-slogan { gap: .13em !important; font-size: clamp(2rem,8.6vw,3.45rem) !important; line-height: 1.04 !important }
 
   /* v23 mobile */
-  .v23 .segments-head .eyebrow { font-size: clamp(1.88rem,8.45vw,2.8rem) !important; margin-bottom: 28px !important }
+  .v23 .segments-head .eyebrow { font-size: clamp(2.1rem,9vw,3rem) !important; margin-bottom: 12px !important }
   .v23 .segment-title-row { grid-template-columns: 46px minmax(0,1fr) 46px !important; gap: 8px !important; min-height: 94px !important }
   .v23 .segment-title-row h2 { font-size: clamp(1.4rem,6.15vw,2rem) !important }
   .v23 .segment-slide p { width: min(86vw,620px) !important; margin-top: 24px !important; padding: 16px 17px !important; border-radius: 16px !important; font-size: .98rem !important; line-height: 1.5 !important }
-  .v23 .projects-head h2 { font-size: clamp(2rem,8.3vw,2.85rem) !important }
+  .v23 .projects-head h2 { font-size: clamp(2.1rem,9vw,3rem) !important }
   .v23 .project-info { padding: 28px 26px 78px !important }
   .v23 .project-info p { font-size: 1.02rem !important; line-height: 1.6 !important }
   .v23 .v14-mandala-stage { height: calc(82vw + 78px) !important; min-height: 390px !important; max-height: none !important; margin-top: 8px !important }
@@ -1245,25 +1250,26 @@ body.visit-modal-open { overflow: hidden }
   .v23 .v14-lab-plus { width: 42px !important; height: 42px !important; font-size: 1.65rem !important }
   .v23 .v14-lab-detail { top: 12vw !important }
   .v23 .results-head h2 { font-size: clamp(2.1rem,9vw,3rem) !important }
-  .v23 .testimonials { padding-bottom: 42px !important }
-  .v23 .direction { padding-top: 52px !important }
+  .v23 .testimonials { padding-bottom: 0 !important }
+  .v23 .direction { padding-top: 64px !important }
   .v23 .final-actions a, .v23 .final-actions button { font-size: 1.12rem !important }
 
   /* v24 mobile */
   .v24 .segment-slide p { width: min(90vw,640px) !important; margin-top: 28px !important; padding: 24px 22px !important; border-radius: 18px !important; line-height: 1.55 !important }
 
   /* v25 mobile */
-  .v25 .v14-structure .structure-head { width: 90vw !important; margin: 0 auto 40px !important }
-  .v25 .v14-structure .structure-head h2 { font-size: clamp(3.1rem,12.6vw,5rem) !important; line-height: .97 !important; margin: 0 auto 18px !important }
+  .v25 .v14-structure { padding-bottom: 0 !important }
+  .v25 .v14-structure .structure-head { width: 90vw !important; margin: 0 auto 24px !important }
+  .v25 .v14-structure .structure-head h2 { font-size: clamp(2.1rem,9vw,3rem) !important; line-height: .97 !important; margin: 0 auto 18px !important }
   .v25 .v14-structure .structure-sub { max-width: 88vw !important; line-height: 1.55 !important }
-  .v25 .v14-mandala-stage { height: 118vw !important; min-height: 440px !important; max-height: 690px !important; margin-top: 6px !important }
-  .v25 .v14-mandala-rotor { width: 178vw !important; left: auto !important; right: -89vw !important; top: 0 !important }
+  .v25 .v14-mandala-stage { height: 107vw !important; min-height: 0 !important; max-height: none !important; margin: 0 !important; overflow: visible !important }
+  .v25 .v14-mandala-rotor { width: 82vw !important; left: 9vw !important; right: auto !important; top: 17vw !important }
   .v25 .v14-lab-plus { width: 44px !important; height: 44px !important; border-width: 2.5px !important; font-size: 1.75rem !important }
   .v25 .v14-lab-detail { left: 4.5vw !important; top: 14vw !important; width: 61vw !important; padding: 20px 18px 18px !important; border-radius: 20px !important }
   .v25 .v14-lab-detail h3 { font-size: clamp(1.35rem,6vw,2rem) !important }
 
   /* v26 mobile */
-  .v26 .segment-title-row { grid-template-columns: 46px minmax(0,1fr) 46px !important; gap: 10px !important; min-height: 118px !important; width: 100% !important; padding: 0 12px !important; box-sizing: border-box !important }
+  .v26 .segment-title-row { grid-template-columns: 46px minmax(0,1fr) 46px !important; gap: 10px !important; min-height: 90px !important; width: 100% !important; padding: 0 12px !important; box-sizing: border-box !important }
   .v26 .segment-title-row h2 { min-width: 0 !important; max-width: 100% !important; font-size: clamp(1.28rem,5.65vw,1.85rem) !important; line-height: 1.04 !important; letter-spacing: -.035em !important }
 
   /* v27 mobile */
@@ -1274,6 +1280,11 @@ body.visit-modal-open { overflow: hidden }
   .visit-modal { padding: 14px }
   .visit-modal-dialog { padding: 24px 18px 20px; border-radius: 22px }
   .visit-modal-close { right: 12px; top: 12px }
+}
+
+/* — mobile estreito — */
+@media (max-width: 340px) {
+  .mission-intro h2 { text-align: left }
 }
 
 /* — mobile pequeno ≤ 430px — */
@@ -1289,17 +1300,3 @@ body.visit-modal-open { overflow: hidden }
   .v11 .lab-detail { top: 90px !important }
 }
 
-/* ── 16. Preferências de acessibilidade ──────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  * { scroll-behavior: auto !important }
-  .reveal { opacity: 1 !important; transform: none !important }
-  .partner-track { animation: none !important }
-  .final h2 > span { animation: none !important }
-  .mission-topic.reveal { transform: none !important }
-  .v15 .verbs span { animation: none !important }
-  .v15 .testimonial-card { transition: none !important }
-  .v16 .mission-lead p.reveal,
-  .v16 .mission-topic.reveal { opacity: 1 !important; transform: none !important; transition: none !important }
-  .v16 .segments.curve-rise,
-  .v16 .segments.curve-rise.in { transform: none !important }
-}

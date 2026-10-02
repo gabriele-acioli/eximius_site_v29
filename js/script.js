@@ -571,12 +571,6 @@ document.querySelectorAll('.reveal').forEach(el=>{
   ].filter(Boolean);
   if(!targets.length) return;
 
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced){
-    targets.forEach(el=>el.classList.add('in'));
-    return;
-  }
-
   const replayObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       entry.target.classList.toggle('in',entry.isIntersecting);
@@ -593,12 +587,6 @@ document.querySelectorAll('.reveal').forEach(el=>{
 (() => {
   const section=document.querySelector('.segments.curve-rise');
   if(!section) return;
-
-  const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduced){
-    section.style.setProperty('--v16-trajectory-y','0px');
-    return;
-  }
 
   let currentY=Math.min(130,window.innerHeight*.16);
   let ticking=false;
@@ -643,13 +631,18 @@ if(heroVideo){
   const duracaoTransicao = 450;
 
   let trocando = false;
+  let heroVisivel = false;
+  let loopFrame = null;
 
   heroVideo.addEventListener('loadedmetadata',()=>{
     heroVideo.currentTime = inicio;
-    heroVideo.play().catch(()=>{});
+    if(heroVisivel) heroVideo.play().catch(()=>{});
   });
 
   function controlarLoop(){
+    loopFrame = null;
+    if(!heroVisivel) return;
+
     if(!trocando && heroVideo.currentTime >= fim - .45){
       trocando = true;
 
@@ -662,7 +655,7 @@ if(heroVideo){
           requestAnimationFrame(()=>{
             requestAnimationFrame(()=>{
               heroVideo.classList.remove('loop-transition');
-              heroVideo.play().catch(()=>{});
+              if(heroVisivel) heroVideo.play().catch(()=>{});
 
               setTimeout(()=>{
                 trocando = false;
@@ -677,8 +670,28 @@ if(heroVideo){
       },duracaoTransicao);
     }
 
-    requestAnimationFrame(controlarLoop);
+    loopFrame = requestAnimationFrame(controlarLoop);
   }
 
-  controlarLoop();
+  const heroSection = heroVideo.closest('.hero');
+  if(heroSection){
+    const heroObserver = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        heroVisivel = entry.isIntersecting;
+
+        if(heroVisivel){
+          heroVideo.play().catch(()=>{});
+          if(loopFrame === null) controlarLoop();
+        }else{
+          heroVideo.pause();
+          if(loopFrame !== null){
+            cancelAnimationFrame(loopFrame);
+            loopFrame = null;
+          }
+        }
+      });
+    },{threshold:0});
+
+    heroObserver.observe(heroSection);
+  }
 }

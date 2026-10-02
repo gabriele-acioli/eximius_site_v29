@@ -79,30 +79,18 @@
 
 
   /* Entrada do bloco azul ao chegar na tela */
-  const reducedMotion = window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches;
+  const editorialObserver = new IntersectionObserver(entries => {
 
-  if(reducedMotion){
-
-    editorial.classList.add('in');
-
-  }else{
-
-    const editorialObserver = new IntersectionObserver(entries => {
-
-      entries.forEach(entry => {
-        entry.target.classList.toggle('in', entry.isIntersecting);
-      });
-
-    },{
-      threshold:.08,
-      rootMargin:'0px 0px -5% 0px'
+    entries.forEach(entry => {
+      entry.target.classList.toggle('in', entry.isIntersecting);
     });
 
-    editorialObserver.observe(editorial);
+  },{
+    threshold:.08,
+    rootMargin:'0px 0px -5% 0px'
+  });
 
-  }
+  editorialObserver.observe(editorial);
 
   })();
 
